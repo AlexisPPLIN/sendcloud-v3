@@ -10,6 +10,6 @@ class ClientTest extends TestCase
 {
     public function testEmpty(): void
     {
-        
+        $this->assertTrue(true);
     }
 }

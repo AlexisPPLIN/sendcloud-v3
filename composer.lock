@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "25d5280b4d2e92a693d7ad0e2efdb344",
+    "content-hash": "5b2c08e08b33aefb551b248d94811682",
     "packages": [
         {
             "name": "psr/http-factory",
