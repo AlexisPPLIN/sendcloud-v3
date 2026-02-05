@@ -4,7 +4,12 @@ declare(strict_types=1);
 
 namespace Test\AlexisPPLIN\SendcloudV3;
 
-class ClientTest
+use PHPUnit\Framework\TestCase;
+
+class ClientTest extends TestCase
 {
-    
+    public function testEmpty(): void
+    {
+        
+    }
 }

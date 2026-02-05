@@ -39,5 +39,8 @@
         "guzzlehttp/psr7": "^2.8",
         "phpstan/phpstan": "^2.1",
         "rector/rector": "^2.3"
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit tests"
     }
 }
