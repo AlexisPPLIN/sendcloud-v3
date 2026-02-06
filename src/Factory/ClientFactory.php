@@ -9,8 +9,8 @@ use Http\Client\HttpClient;
 use Http\Client\Common\Plugin;
 use Http\Client\Common\Plugin\AuthenticationPlugin;
 use Http\Client\Common\Plugin\ErrorPlugin;
-use Http\Discovery\HttpClientDiscovery;
 use Http\Discovery\Psr17FactoryDiscovery;
+use Http\Discovery\Psr18ClientDiscovery;
 use Http\Message\Authentication\BasicAuth;
 
 class ClientFactory
@@ -27,7 +27,7 @@ class ClientFactory
         ?HttpClient $client = null
     ): PluginClient {
         if (!$client) {
-            $client = HttpClientDiscovery::find();
+            $client = Psr18ClientDiscovery::find();
         }
         $plugins[] = new ErrorPlugin();
 
