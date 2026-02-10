@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace AlexisPPLIN\SendcloudV3\Models\Customer;
 
 use AlexisPPLIN\SendcloudV3\Models\ModelInterface;
-use JsonSerializable;
 
 /**
  * Node for an information about customer

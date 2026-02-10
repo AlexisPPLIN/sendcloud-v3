@@ -4,11 +4,7 @@ declare(strict_types=1);
 
 namespace Test\AlexisPPLIN\SendcloudV3;
 
-use AlexisPPLIN\SendcloudV3\Exceptions\DateParsingException;
-use AlexisPPLIN\SendcloudV3\Utils\DateUtils;
 use AlexisPPLIN\SendcloudV3\Utils\JsonUtils;
-use DateTimeImmutable;
-use DateTimeZone;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 

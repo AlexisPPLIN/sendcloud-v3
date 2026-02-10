@@ -6,7 +6,6 @@ namespace AlexisPPLIN\SendcloudV3\Models\Order;
 
 use AlexisPPLIN\SendcloudV3\Models\Measurement\Measurement;
 use AlexisPPLIN\SendcloudV3\Models\ModelInterface;
-use AlexisPPLIN\SendcloudV3\Models\ServicePoint\ServicePoint;
 use AlexisPPLIN\SendcloudV3\Utils\JsonUtils;
 
 /**

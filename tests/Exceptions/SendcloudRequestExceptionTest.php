@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Test\AlexisPPLIN\SendcloudV3;
 
+use Http\Client\Exception;
 use AlexisPPLIN\SendcloudV3\Exceptions\SendcloudRequestException;
-use Http\Client\Exception\HttpException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
@@ -156,7 +156,7 @@ class SendcloudRequestExceptionTest extends TestCase
     {
         // -- Arrange
 
-        $exception = $this->createMock(\Http\Client\Exception::class);
+        $exception = $this->createMock(Exception::class);
         $expected = new SendcloudRequestException(
             message: 'Could not contact Sendcloud API.',
             code: SendcloudRequestException::CODE_CONNECTION_FAILED

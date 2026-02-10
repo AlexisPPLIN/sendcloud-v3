@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Test\AlexisPPLIN\SendcloudV3;
 
+use Http\Discovery\Exception\NotFoundException;
 use AlexisPPLIN\SendcloudV3\Endpoints\Orders;
 use AlexisPPLIN\SendcloudV3\Exceptions\DateParsingException;
 use AlexisPPLIN\SendcloudV3\Exceptions\SendcloudRequestException;
@@ -73,7 +74,7 @@ class OrdersTest extends TestCase
     private Order $order;
 
     /**
-     * @throws \Http\Discovery\Exception\NotFoundException
+     * @throws NotFoundException
      * @throws InvalidArgumentException
      */
     private function getJson(bool $one_order) : string

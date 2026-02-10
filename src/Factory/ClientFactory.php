@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace AlexisPPLIN\SendcloudV3\Factory;
 
+use Http\Discovery\Exception\NotFoundException;
 use Http\Client\Common\Plugin\BaseUriPlugin;
 use Http\Client\Common\Plugin\HeaderSetPlugin;
 use Http\Client\Common\PluginClient;
 use Http\Client\HttpClient;
 use Http\Client\Common\Plugin;
 use Http\Client\Common\Plugin\AuthenticationPlugin;
-use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Discovery\Psr18ClientDiscovery;
 use Http\Message\Authentication\BasicAuth;
@@ -20,7 +20,7 @@ class ClientFactory
 {
     /**
      * @param array<Plugin> $plugins
-     * @throws \Http\Discovery\Exception\NotFoundException
+     * @throws NotFoundException
      * @throws InvalidArgumentException
      */
     public static function create(

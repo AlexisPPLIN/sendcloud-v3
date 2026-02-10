@@ -7,8 +7,6 @@ namespace AlexisPPLIN\SendcloudV3\Endpoints;
 use AlexisPPLIN\SendcloudV3\Client;
 use AlexisPPLIN\SendcloudV3\Exceptions\SendcloudRequestException;
 use AlexisPPLIN\SendcloudV3\Models\Order\Order;
-use Exception;
-use Http\Discovery\Psr17FactoryDiscovery;
 use InvalidArgumentException;
 use Throwable;
 

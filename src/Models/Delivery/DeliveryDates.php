@@ -4,13 +4,9 @@ declare(strict_types=1);
 
 namespace AlexisPPLIN\SendcloudV3\Models\Delivery;
 
-use AlexisPPLIN\SendcloudV3\Exceptions\ModelFromDataException;
-use AlexisPPLIN\SendcloudV3\Models\AbstractModel;
 use AlexisPPLIN\SendcloudV3\Models\ModelInterface;
 use AlexisPPLIN\SendcloudV3\Utils\DateUtils;
 use DateTimeImmutable;
-use DateTimeInterface;
-use JsonSerializable;
 
 /**
  * Defined delivery dates
