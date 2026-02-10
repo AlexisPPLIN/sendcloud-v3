@@ -1,0 +1,12 @@
+{
+  "errors": [
+    {
+      "detail": "Invalid username/password.",
+      "status": "401",
+      "source": {
+        "pointer": "/data"
+      },
+      "code": "authentication_failed"
+    }
+  ]
+}

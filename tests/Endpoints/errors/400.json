@@ -1,0 +1,12 @@
+{
+  "errors": [
+    {
+      "detail": "String should have at least 3 characters",
+      "status": "400",
+      "source": {
+        "pointer": "/data/attributes/[0]/order_details/order_items/0/total_price/currency"
+      },
+      "code": "invalid"
+    }
+  ]
+}

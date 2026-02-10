@@ -16,4 +16,7 @@ return RectorConfig::configure()
     ->withRules([
         DeclareStrictTypesRector::class
     ])
-    ->withPreparedSets(codingStyle: true);
+    ->withPreparedSets(codingStyle: true)
+    ->withImportNames(
+        removeUnusedImports: true
+    );
