@@ -6,21 +6,23 @@ namespace Test\AlexisPPLIN\SendcloudV3;
 
 use AlexisPPLIN\SendcloudV3\Endpoints\Orders;
 use AlexisPPLIN\SendcloudV3\Factory\ClientFactory;
+use AlexisPPLIN\SendcloudV3\Models\Address;
 use AlexisPPLIN\SendcloudV3\Models\Delivery\DeliveryDates;
 use AlexisPPLIN\SendcloudV3\Models\Measurement\Measurement;
 use AlexisPPLIN\SendcloudV3\Models\Measurement\MeasurementWeight;
+use AlexisPPLIN\SendcloudV3\Models\Order\CustomsDetails;
 use AlexisPPLIN\SendcloudV3\Models\Order\Order;
 use AlexisPPLIN\SendcloudV3\Models\Order\OrderDetails;
 use AlexisPPLIN\SendcloudV3\Models\Order\OrderDetailsIntegration;
-use AlexisPPLIN\SendcloudV3\Models\Order\OrderDetailsStatus;
 use AlexisPPLIN\SendcloudV3\Models\Order\OrderItems;
+use AlexisPPLIN\SendcloudV3\Models\PaymentDetails;
 use AlexisPPLIN\SendcloudV3\Models\Price;
+use AlexisPPLIN\SendcloudV3\Models\Status;
+use AlexisPPLIN\SendcloudV3\Models\Tax\TaxNumber;
+use AlexisPPLIN\SendcloudV3\Models\Tax\TaxNumbers;
 use AlexisPPLIN\SendcloudV3\Utils\DateUtils;
-use DateTimeImmutable;
 use Nyholm\Psr7\Response;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversMethod;
-use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 
@@ -36,7 +38,12 @@ use Http\Mock\Client;
 #[CoversClass(OrderItems::class)]
 #[CoversClass(Price::class)]
 #[CoversClass(DateUtils::class)]
-#[CoversClass(OrderDetailsStatus::class)]
+#[CoversClass(Status::class)]
+#[CoversClass(PaymentDetails::class)]
+#[CoversClass(CustomsDetails::class)]
+#[CoversClass(TaxNumber::class)]
+#[CoversClass(TaxNumbers::class)]
+#[CoversClass(Address::class)]
 #[UsesClass(Client::class)]
 #[UsesClass(ClientFactory::class)]
 class OrdersTest extends TestCase
@@ -153,12 +160,12 @@ class OrdersTest extends TestCase
                 }
                 },
                 "shipping_address": {
-                "name": "John Doe",
-                "address_line_1": "Stadhuisplein",
-                "house_number": "15",
-                "postal_code": "5341TW",
-                "city": "Oss",
-                "country_code": "NL"
+                    "name": "John Doe",
+                    "address_line_1": "Stadhuisplein",
+                    "house_number": "15",
+                    "postal_code": "5341TW",
+                    "city": "Oss",
+                    "country_code": "NL"
                 }
             }
         }
@@ -179,13 +186,16 @@ class OrdersTest extends TestCase
 
         $order_id = 1;
         $expected = new Order(
+            id: '669',
             order_id: '555413',
+            created_at: DateUtils::iso8601ToDateTime('2018-02-27T10:00:00.555Z'),
+            modified_at: DateUtils::iso8601ToDateTime('2018-02-27T10:00:00.555Z'),
             order_number: 'OXSDFGHTD-12',
             order_details: new OrderDetails(
                 integration: new OrderDetailsIntegration(
                     id: 739283
                 ),
-                status: new OrderDetailsStatus(
+                status: new Status(
                     code: 'fulfilled',
                     message: 'Fulfilled'
                 ),
@@ -219,6 +229,69 @@ class OrdersTest extends TestCase
                     )
                 ],
                 notes: ''
+            ),
+            payment_details: new PaymentDetails(
+                is_cash_on_delivery: true,
+                total_price: new Price(
+                    value: 7,
+                    currency: 'EUR'
+                ),
+                status: new Status(
+                    code: 'paid',
+                    message: 'Order has been paid'
+                ),
+                discount_granted: new Price(
+                    value: 3.99,
+                    currency: 'EUR'
+                ),
+                insurance_costs: new Price(
+                    value: 9.99,
+                    currency: 'EUR'
+                ),
+                freight_costs: new Price(
+                    value: 5.99,
+                    currency: 'EUR'
+                ),
+                other_costs: new Price(
+                    value: 2.99,
+                    currency: 'EUR'
+                ),
+            ),
+            customs_details: new CustomsDetails(
+                commercial_invoice_number: '0124-03102022',
+                shipment_type: 'commercial_goods',
+                export_type: 'commercial_b2c',
+                tax_numbers: new TaxNumbers(
+                    sender: [
+                        new TaxNumber(
+                            name: 'VAT',
+                            country_code: 'NL',
+                            value: 'NL987654321B02'
+                        )
+                    ],
+                    receiver: [
+                        new TaxNumber(
+                            name: 'VAT',
+                            country_code: 'DE',
+                            value: 'DE123456789B03'
+                        )
+                    ],
+                    importer_of_record: [
+                        new TaxNumber(
+                            name: 'VAT',
+                            country_code: 'NL',
+                            value: 'NL975318642B01'
+                        )
+                    ]
+                )
+            ),
+            shipping_address: new Address(
+                name: 'John Doe',
+                address_line_1: 'Stadhuisplein',
+                house_number: '15',
+                postal_code: '5341TW',
+                city: 'Oss',
+                country_code: 'NL'
             )
         );
 

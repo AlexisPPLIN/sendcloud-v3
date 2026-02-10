@@ -1,10 +1,10 @@
 <?php
 
-namespace AlexisPPLIN\SendcloudV3\Models\Order;
+namespace AlexisPPLIN\SendcloudV3\Models;
 
 use AlexisPPLIN\SendcloudV3\Models\ModelInterface;
 
-class OrderDetailsStatus implements ModelInterface
+class Status implements ModelInterface
 {
     public function __construct(
         public readonly string $code,

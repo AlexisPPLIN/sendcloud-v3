@@ -3,6 +3,7 @@
 namespace AlexisPPLIN\SendcloudV3\Models\Order;
 
 use AlexisPPLIN\SendcloudV3\Models\ModelInterface;
+use AlexisPPLIN\SendcloudV3\Models\Status;
 use AlexisPPLIN\SendcloudV3\Utils\DateUtils;
 use DateTimeImmutable;
 
@@ -24,7 +25,7 @@ class OrderDetails implements ModelInterface
      */
     public function __construct(
         public readonly OrderDetailsIntegration $integration,
-        public readonly OrderDetailsStatus $status,
+        public readonly Status $status,
         public readonly DateTimeImmutable $order_created_at,
         public readonly array $order_items,
         public readonly DateTimeImmutable $order_updated_at,
@@ -43,7 +44,7 @@ class OrderDetails implements ModelInterface
 
         return new self(
             integration: OrderDetailsIntegration::fromData($data['integration']),
-            status: OrderDetailsStatus::fromData($data['status']),
+            status: Status::fromData($data['status']),
             order_created_at: DateUtils::iso8601ToDateTime($data['order_created_at']),
             order_items: $order_items,
             order_updated_at: DateUtils::iso8601ToDateTime($data['order_updated_at']),
