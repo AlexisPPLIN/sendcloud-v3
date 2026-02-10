@@ -18,4 +18,13 @@ class OrderDetailsIntegration implements ModelInterface
             id: (int) $data['id']
         );
     }
+
+    public function jsonSerialize() : array
+    {
+        $json = [
+            'id' => $this->id
+        ];
+
+        return $json;
+    }
 }

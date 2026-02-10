@@ -3,6 +3,7 @@
 namespace AlexisPPLIN\SendcloudV3\Models\Order;
 
 use AlexisPPLIN\SendcloudV3\Models\ModelInterface;
+use AlexisPPLIN\SendcloudV3\Utils\JsonUtils;
 
 /**
  * Contains the required properties to be sent when API client informs the shipping method and carrier to be used
@@ -28,5 +29,15 @@ class ShippingOptionProperties implements ModelInterface
             shipping_option_code: isset($data['shipping_option_code']) ? (string) $data['shipping_option_code'] : null,
             contract_id:          isset($data['contract_id'])          ? (int) $data['contract_id']             : null
         );
+    }
+
+    public function jsonSerialize() : array
+    {
+        $json = [];
+
+        JsonUtils::addIfNotNull($json, 'shipping_option_code', $this->shipping_option_code);
+        JsonUtils::addIfNotNull($json, 'contract_id', $this->contract_id);
+
+        return $json;
     }
 }

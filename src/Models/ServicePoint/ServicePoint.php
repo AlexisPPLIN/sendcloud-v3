@@ -3,6 +3,7 @@
 namespace AlexisPPLIN\SendcloudV3\Models\ServicePoint;
 
 use AlexisPPLIN\SendcloudV3\Models\ModelInterface;
+use AlexisPPLIN\SendcloudV3\Utils\JsonUtils;
 
 class ServicePoint implements ModelInterface{
     public function __construct(
@@ -26,5 +27,20 @@ class ServicePoint implements ModelInterface{
             type:        isset($data['type'])        ? (string) $data['type']           : null,
             extra_data:  isset($data['extra_data'])  ? (object) $data['extra_data']     : null,
         );
+    }
+
+    public function jsonSerialize() : array
+    {
+        $json = [
+            'id' => $this->id
+        ];
+
+        JsonUtils::addIfNotNull($json, 'post_number', $this->post_number);
+        JsonUtils::addIfNotNull($json, 'latitude', $this->latitude);
+        JsonUtils::addIfNotNull($json, 'longitude', $this->longitude);
+        JsonUtils::addIfNotNull($json, 'type', $this->type);
+        JsonUtils::addIfNotNull($json, 'extra_data', $this->extra_data);
+
+        return $json;
     }
 }

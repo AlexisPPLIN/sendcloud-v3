@@ -3,6 +3,7 @@
 namespace AlexisPPLIN\SendcloudV3\Models\Tax;
 
 use AlexisPPLIN\SendcloudV3\Models\ModelInterface;
+use AlexisPPLIN\SendcloudV3\Utils\JsonUtils;
 
 class TaxNumber implements ModelInterface
 {
@@ -21,5 +22,16 @@ class TaxNumber implements ModelInterface
             country_code:    isset($data['country_code']) ? (string) $data['country_code'] : null,
             value:           isset($data['value'])        ? (string) $data['value']        : null
         );
+    }
+
+    public function jsonSerialize() : array
+    {
+        $json = [];
+
+        JsonUtils::addIfNotNull($json, 'name', $this->name);
+        JsonUtils::addIfNotNull($json, 'country_code', $this->country_code);
+        JsonUtils::addIfNotNull($json, 'value', $this->value);
+
+        return $json;
     }
 }

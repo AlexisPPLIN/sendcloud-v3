@@ -43,4 +43,23 @@ class Measurement implements ModelInterface
             volume: $volume
         );
     }
+
+    public function jsonSerialize() : array
+    {
+        $json = [];
+
+        if (isset($this->dimension)) {
+            $json['dimension'] = $this->dimension;
+        }
+
+        if (isset($this->weight)) {
+            $json['weight'] = $this->weight;
+        }
+
+        if (isset($this->volume)) {
+            $json['volume'] = $this->volume;
+        }
+
+        return $json;
+    }
 }

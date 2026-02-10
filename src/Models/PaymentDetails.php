@@ -2,6 +2,8 @@
 
 namespace AlexisPPLIN\SendcloudV3\Models;
 
+use AlexisPPLIN\SendcloudV3\Utils\JsonUtils;
+
 /**
  * Node for everything about payments and money
  *
@@ -53,5 +55,25 @@ class PaymentDetails implements ModelInterface
             freight_costs:              isset($data['freight_costs'])               ? Price::fromData($data['freight_costs'])               : null,
             other_costs:                isset($data['other_costs'])                 ? Price::fromData($data['other_costs'])                 : null
         );
+    }
+
+    public function jsonSerialize() : array
+    {
+        $json = [
+            'total_price' => $this->total_price,
+            'status' => $this->status
+        ];
+
+        JsonUtils::addIfNotNull($json, 'is_cash_on_delivery', $this->is_cash_on_delivery);
+        JsonUtils::addIfNotNull($json, 'subtotal_price', $this->subtotal_price);
+        JsonUtils::addIfNotNull($json, 'estimated_shipping_price', $this->estimated_shipping_price);
+        JsonUtils::addIfNotNull($json, 'estimated_tax_price', $this->estimated_tax_price);
+        JsonUtils::addIfNotNull($json, 'invoice_date', $this->invoice_date);
+        JsonUtils::addIfNotNull($json, 'discount_granted', $this->discount_granted);
+        JsonUtils::addIfNotNull($json, 'insurance_costs', $this->insurance_costs);
+        JsonUtils::addIfNotNull($json, 'freight_costs', $this->freight_costs);
+        JsonUtils::addIfNotNull($json, 'other_costs', $this->other_costs);
+
+        return $json;
     }
 }

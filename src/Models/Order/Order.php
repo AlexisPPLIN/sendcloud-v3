@@ -8,6 +8,7 @@ use AlexisPPLIN\SendcloudV3\Models\ModelInterface;
 use AlexisPPLIN\SendcloudV3\Models\PaymentDetails;
 use AlexisPPLIN\SendcloudV3\Models\ServicePoint\ServicePoint;
 use AlexisPPLIN\SendcloudV3\Utils\DateUtils;
+use AlexisPPLIN\SendcloudV3\Utils\JsonUtils;
 use DateTimeImmutable;
 
 class Order implements ModelInterface
@@ -60,5 +61,34 @@ class Order implements ModelInterface
             shipping_details:       isset($data['shipping_details'])        ? ShippingDetails::fromData($data['shipping_details'])      : null,
             service_point_details:  isset($data['service_point_details'])   ? ServicePoint::fromData($data['service_point_details'])    : null,
         );
+    }
+
+    public function jsonSerialize() : array
+    {
+        $json = [
+            'order_id' => $this->order_id,
+            'order_number' => $this->order_number,
+            'order_details' => $this->order_details,
+            'payment_details' => $this->payment_details
+        ];
+
+        JsonUtils::addIfNotNull($json, 'id', $this->id);
+
+        if (isset($this->created_at)) {
+            $json['created_at'] = DateUtils::dateTimeToIso8601($this->created_at);
+        }
+
+        if (isset($this->modified_at)) {
+            $json['modified_at'] = DateUtils::dateTimeToIso8601($this->modified_at);
+        }
+
+        JsonUtils::addIfNotNull($json, 'customs_details', $this->customs_details);
+        JsonUtils::addIfNotNull($json, 'customer_details', $this->customer_details);
+        JsonUtils::addIfNotNull($json, 'billing_address', $this->billing_address);
+        JsonUtils::addIfNotNull($json, 'shipping_address', $this->shipping_address);
+        JsonUtils::addIfNotNull($json, 'shipping_details', $this->shipping_details);
+        JsonUtils::addIfNotNull($json, 'service_point_details', $this->service_point_details);
+
+        return ['data' => $json];
     }
 }

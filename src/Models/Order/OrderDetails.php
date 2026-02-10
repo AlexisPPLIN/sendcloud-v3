@@ -5,6 +5,7 @@ namespace AlexisPPLIN\SendcloudV3\Models\Order;
 use AlexisPPLIN\SendcloudV3\Models\ModelInterface;
 use AlexisPPLIN\SendcloudV3\Models\Status;
 use AlexisPPLIN\SendcloudV3\Utils\DateUtils;
+use AlexisPPLIN\SendcloudV3\Utils\JsonUtils;
 use DateTimeImmutable;
 
 /**
@@ -51,5 +52,21 @@ class OrderDetails implements ModelInterface
             notes: (string) $data['notes'],
             tags: isset($data['tags']) ? $data['tags'] : null
         );
+    }
+
+    public function jsonSerialize() : array
+    {
+        $json = [
+            'integration' => $this->integration,
+            'status' => $this->status,
+            'order_created_at' => DateUtils::dateTimeToIso8601($this->order_created_at),
+            'order_items' => $this->order_items,
+            'order_updated_at' => DateUtils::dateTimeToIso8601($this->order_updated_at),
+            'notes' => $this->notes
+        ];
+
+        JsonUtils::addIfNotNull($json, 'tags', $this->tags);
+
+        return $json;
     }
 }

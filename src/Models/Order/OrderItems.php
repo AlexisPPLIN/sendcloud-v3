@@ -7,6 +7,7 @@ use AlexisPPLIN\SendcloudV3\Models\Delivery\DeliveryDates;
 use AlexisPPLIN\SendcloudV3\Models\Measurement\Measurement;
 use AlexisPPLIN\SendcloudV3\Models\ModelInterface;
 use AlexisPPLIN\SendcloudV3\Models\Price;
+use AlexisPPLIN\SendcloudV3\Utils\JsonUtils;
 
 /**
  * @see https://sendcloud.dev/api/v3/orders/retrieve-an-order#response-data-order-details-order-items
@@ -88,5 +89,34 @@ class OrderItems implements ModelInterface
             intended_use:       isset($data['intended_use'])        ? (string) $data['intended_use']                           : null,
             dangerous_goods:    isset($data['dangerous_goods'])     ? DangerousGoods::fromData($data['dangerous_goods']) : null
         );
+    }
+
+    public function jsonSerialize() : array
+    {
+        $json = [
+            'name' => $this->name,
+            'quantity' => $this->quantity
+        ];
+
+        JsonUtils::addIfNotNull($json, 'total_price', $this->total_price);
+        JsonUtils::addIfNotNull($json, 'item_id', $this->item_id);
+        JsonUtils::addIfNotNull($json, 'product_id', $this->product_id);
+        JsonUtils::addIfNotNull($json, 'variant_id', $this->variant_id);
+        JsonUtils::addIfNotNull($json, 'image_url', $this->image_url);
+        JsonUtils::addIfNotNull($json, 'description', $this->description);
+        JsonUtils::addIfNotNull($json, 'sku', $this->sku);
+        JsonUtils::addIfNotNull($json, 'hs_code', $this->hs_code);
+        JsonUtils::addIfNotNull($json, 'country_of_origin', $this->country_of_origin);
+        JsonUtils::addIfNotNull($json, 'properties', $this->properties);
+        JsonUtils::addIfNotNull($json, 'unit_price', $this->unit_price);
+        JsonUtils::addIfNotNull($json, 'measurement', $this->measurement);
+        JsonUtils::addIfNotNull($json, 'ean', $this->ean);
+        JsonUtils::addIfNotNull($json, 'delivery_dates', $this->delivery_dates);
+        JsonUtils::addIfNotNull($json, 'mid_code', $this->mid_code);
+        JsonUtils::addIfNotNull($json, 'material_content', $this->material_content);
+        JsonUtils::addIfNotNull($json, 'intended_use', $this->intended_use);
+        JsonUtils::addIfNotNull($json, 'dangerous_goods', $this->dangerous_goods);
+
+        return $json;
     }
 }

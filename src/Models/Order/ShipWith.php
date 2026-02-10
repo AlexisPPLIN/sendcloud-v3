@@ -30,4 +30,14 @@ class ShipWith implements ModelInterface
             properties: ShippingOptionProperties::fromData($data['properties'])
         );
     }
+
+    public function jsonSerialize() : array
+    {
+        $json = [
+            'type' => $this->type,
+            'properties' => $this->properties
+        ];
+
+        return $json;
+    }
 }

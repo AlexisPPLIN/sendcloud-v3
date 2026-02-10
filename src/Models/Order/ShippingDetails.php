@@ -5,6 +5,7 @@ namespace AlexisPPLIN\SendcloudV3\Models\Order;
 use AlexisPPLIN\SendcloudV3\Models\Measurement\Measurement;
 use AlexisPPLIN\SendcloudV3\Models\ModelInterface;
 use AlexisPPLIN\SendcloudV3\Models\ServicePoint\ServicePoint;
+use AlexisPPLIN\SendcloudV3\Utils\JsonUtils;
 
 /**
  * Shipping information
@@ -39,5 +40,17 @@ class ShippingDetails implements ModelInterface
             measurement:            isset($data['measurement'])             ? Measurement::fromData($data['measurement'])               : null,
             ship_with:              isset($data['ship_with'])               ? ShipWith::fromData($data['ship_with'])                    : null
         );
+    }
+
+    public function jsonSerialize() : array
+    {
+        $json = [];
+
+        JsonUtils::addIfNotNull($json, 'is_local_pickup', $this->is_local_pickup);
+        JsonUtils::addIfNotNull($json, 'delivery_indicator', $this->delivery_indicator);
+        JsonUtils::addIfNotNull($json, 'measurement', $this->measurement);
+        JsonUtils::addIfNotNull($json, 'ship_with', $this->ship_with);
+
+        return $json;
     }
 }

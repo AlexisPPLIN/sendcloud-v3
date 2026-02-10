@@ -20,4 +20,17 @@ class Status implements ModelInterface
             message: isset($data['message']) ? (string) $data['message'] : null
         );
     }
+
+    public function jsonSerialize() : array
+    {
+        $json = [
+            'code' => $this->code
+        ];
+
+        if (isset($this->message)) {
+            $json['message'] = $this->message;
+        }
+
+        return $json;
+    }
 }

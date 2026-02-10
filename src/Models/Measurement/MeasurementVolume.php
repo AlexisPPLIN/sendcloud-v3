@@ -38,4 +38,14 @@ class MeasurementVolume implements ModelInterface
             unit: (string) $data['unit']
         );
     }
+
+    public function jsonSerialize() : array
+    {
+        $json = [
+            'value' => $this->value,
+            'unit' => $this->unit
+        ];
+
+        return $json;
+    }
 }

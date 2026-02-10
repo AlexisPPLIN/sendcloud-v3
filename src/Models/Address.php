@@ -2,6 +2,8 @@
 
 namespace AlexisPPLIN\SendcloudV3\Models;
 
+use AlexisPPLIN\SendcloudV3\Utils\JsonUtils;
+
 /**
  * Sendcloud Address object
  *
@@ -56,5 +58,26 @@ class Address implements ModelInterface
             email:                  isset($data['email'])               ? (string) $data['email']               : null,
             phone_number:           isset($data['phone_number'])        ? (string) $data['phone_number']        : null,
         );
+    }
+
+    public function jsonSerialize() : array
+    {
+        $json = [
+            'name' => $this->name,
+            'address_line_1' => $this->address_line_1,
+            'postal_code' => $this->postal_code,
+            'city' => $this->city,
+            'country_code' => $this->country_code,
+        ];
+
+        JsonUtils::addIfNotNull($json, 'company_name', $this->company_name);
+        JsonUtils::addIfNotNull($json, 'house_number', $this->house_number);
+        JsonUtils::addIfNotNull($json, 'address_line_2', $this->address_line_2);
+        JsonUtils::addIfNotNull($json, 'po_box', $this->po_box);
+        JsonUtils::addIfNotNull($json, 'state_province_code', $this->state_province_code);
+        JsonUtils::addIfNotNull($json, 'email', $this->email);
+        JsonUtils::addIfNotNull($json, 'phone_number', $this->phone_number);
+
+        return $json;
     }
 }

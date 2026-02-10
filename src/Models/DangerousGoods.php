@@ -2,6 +2,8 @@
 
 namespace AlexisPPLIN\SendcloudV3\Models;
 
+use AlexisPPLIN\SendcloudV3\Utils\JsonUtils;
+
 /**
  * Hazardous materials information for items.
  *
@@ -110,5 +112,33 @@ class DangerousGoods implements ModelInterface
             transport_category:                 isset($data['transport_category'])          ? (string) $data['transport_category']          : null,
             tunnel_restriction_code:            isset($data['tunnel_restriction_code'])     ? (string) $data['tunnel_restriction_code']     : null
         );
+    }
+
+    public function jsonSerialize() : array
+    {
+        $json = [
+            'regulation_set' => $this->regulation_set,
+            'unit_of_measurement' => $this->unit_of_measurement,
+            'commodity_regulated_level_code' => $this->commodity_regulated_level_code,
+            'transportation_mode' => $this->transportation_mode,
+            'weight_type' => $this->weight_type,
+            'adr_packing_group_classification' => $this->adr_packing_group_classification
+        ];
+
+        JsonUtils::addIfNotNull($json, 'value', $this->value);
+        JsonUtils::addIfNotNull($json, 'packaging_type_quantity', $this->packaging_type_quantity);
+        JsonUtils::addIfNotNull($json, 'packaging_type', $this->packaging_type);
+        JsonUtils::addIfNotNull($json, 'packaging_instruction_code', $this->packaging_instruction_code);
+        JsonUtils::addIfNotNull($json, 'id_number', $this->id_number);
+        JsonUtils::addIfNotNull($json, 'class_division_number', $this->class_division_number);
+        JsonUtils::addIfNotNull($json, 'quantity', $this->quantity);
+        JsonUtils::addIfNotNull($json, 'proper_shipping_name', $this->proper_shipping_name);
+        JsonUtils::addIfNotNull($json, 'emergency_contact_name', $this->emergency_contact_name);
+        JsonUtils::addIfNotNull($json, 'emergency_contact_phone', $this->emergency_contact_phone);
+        JsonUtils::addIfNotNull($json, 'local_proper_shipping_name', $this->local_proper_shipping_name);
+        JsonUtils::addIfNotNull($json, 'transport_category', $this->transport_category);
+        JsonUtils::addIfNotNull($json, 'tunnel_restriction_code', $this->tunnel_restriction_code);
+
+        return $json;
     }
 }

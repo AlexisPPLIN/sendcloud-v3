@@ -50,6 +50,9 @@ class OrdersTest extends TestCase
 {
     private Orders $endpoint;
 
+    private string $json;
+    private Order $order;
+
     public function setUp(): void
     {
         $publicKey = '123456';
@@ -57,119 +60,10 @@ class OrdersTest extends TestCase
         $partnerId = '1';
         $apiBaseUrl = 'https://api.example.com/v3';
 
+        $this->json = file_get_contents(__DIR__ . '/orders.json');
+
         $client = new Client();
-        $client->addResponse(new Response(body: <<<JSON
-        {
-            "data": {
-                "id": "669",
-                "order_id": "555413",
-                "created_at": "2018-02-27T10:00:00.555Z",
-                "modified_at": "2018-02-27T10:00:00.555Z",
-                "order_number": "OXSDFGHTD-12",
-                "order_details": {
-                "integration": {
-                    "id": 739283
-                },
-                "status": {
-                    "code": "fulfilled",
-                    "message": "Fulfilled"
-                },
-                "order_created_at": "2018-02-27T10:00:00.555Z",
-                "order_updated_at": "2018-02-27T10:00:00.555Z",
-                "order_items": [
-                    {
-                    "name": "Cylinder candle",
-                    "measurement": {
-                        "weight": {
-                        "value": 1,
-                        "unit": "kg"
-                        }
-                    },
-                    "quantity": 1,
-                    "unit_price": {
-                        "value": 3.5,
-                        "currency": "EUR"
-                    },
-                    "total_price": {
-                        "value": 3.5,
-                        "currency": "EUR"
-                    },
-                    "delivery_dates": {
-                        "handover_at": "2022-02-27T10:00:00.555309+00:00",
-                        "deliver_at": "2022-03-02T11:50:00.555309+00:00"
-                    },
-                    "mid_code": "US1234567",
-                    "material_content": "100% Cotton",
-                    "intended_use": "Personal use"
-                    }
-                ]
-                },
-                "payment_details": {
-                "is_cash_on_delivery": true,
-                "total_price": {
-                    "value": 7,
-                    "currency": "EUR"
-                },
-                "status": {
-                    "code": "paid",
-                    "message": "Order has been paid"
-                },
-                "discount_granted": {
-                    "value": "3.99",
-                    "currency": "EUR"
-                },
-                "insurance_costs": {
-                    "value": "9.99",
-                    "currency": "EUR"
-                },
-                "freight_costs": {
-                    "value": "5.99",
-                    "currency": "EUR"
-                },
-                "other_costs": {
-                    "value": "2.99",
-                    "currency": "EUR"
-                }
-                },
-                "customs_details": {
-                "commercial_invoice_number": "0124-03102022",
-                "shipment_type": "commercial_goods",
-                "export_type": "commercial_b2c",
-                "tax_numbers": {
-                    "sender": [
-                    {
-                        "name": "VAT",
-                        "country_code": "NL",
-                        "value": "NL987654321B02"
-                    }
-                    ],
-                    "receiver": [
-                    {
-                        "name": "VAT",
-                        "country_code": "DE",
-                        "value": "DE123456789B03"
-                    }
-                    ],
-                    "importer_of_record": [
-                    {
-                        "name": "VAT",
-                        "country_code": "NL",
-                        "value": "NL975318642B01"
-                    }
-                    ]
-                }
-                },
-                "shipping_address": {
-                    "name": "John Doe",
-                    "address_line_1": "Stadhuisplein",
-                    "house_number": "15",
-                    "postal_code": "5341TW",
-                    "city": "Oss",
-                    "country_code": "NL"
-                }
-            }
-        }
-        JSON));
+        $client->addResponse(new Response(body: $this->json));
 
         $this->endpoint = new Orders(
             $publicKey,
@@ -178,18 +72,12 @@ class OrdersTest extends TestCase
             $apiBaseUrl,
             $client
         );
-    }
 
-    public function testGetOrder() : void
-    {
-        // -- Arrange
-
-        $order_id = 1;
-        $expected = new Order(
+        $this->order = new Order(
             id: '669',
             order_id: '555413',
-            created_at: DateUtils::iso8601ToDateTime('2018-02-27T10:00:00.555Z'),
-            modified_at: DateUtils::iso8601ToDateTime('2018-02-27T10:00:00.555Z'),
+            created_at: DateUtils::iso8601ToDateTime('2018-02-27T10:00:00.555309+00:00'),
+            modified_at: DateUtils::iso8601ToDateTime('2018-02-27T10:00:00.555309+00:00'),
             order_number: 'OXSDFGHTD-12',
             order_details: new OrderDetails(
                 integration: new OrderDetailsIntegration(
@@ -199,8 +87,8 @@ class OrdersTest extends TestCase
                     code: 'fulfilled',
                     message: 'Fulfilled'
                 ),
-                order_created_at: DateUtils::iso8601ToDateTime('2018-02-27T10:00:00.555Z'),
-                order_updated_at: DateUtils::iso8601ToDateTime('2018-02-27T10:00:00.555Z'),
+                order_created_at: DateUtils::iso8601ToDateTime('2018-02-27T10:00:00.555309+00:00'),
+                order_updated_at: DateUtils::iso8601ToDateTime('2018-02-27T10:00:00.555309+00:00'),
                 order_items: [
                     new OrderItems(
                         name: 'Cylinder candle',
@@ -294,14 +182,37 @@ class OrdersTest extends TestCase
                 country_code: 'NL'
             )
         );
+    }
+
+    public function testGetOrder() : void
+    {
+        // -- Arrange
+
+        $order_id = 1;
+        $expected = $this->order;
 
         // -- Act
 
-        $order = $this->endpoint->getOrder($order_id);
+        $actual = $this->endpoint->getOrder($order_id);
 
         // -- Assert
 
-        $this->assertInstanceOf(Order::class, $order);
-        $this->assertEquals($expected, $order);
+        $this->assertInstanceOf(Order::class, $actual);
+        $this->assertEquals($expected, $actual);
+    }
+
+    public function testOrderJson() : void
+    {
+        // -- Arrange
+
+        $expected = $this->json;
+
+        // -- Act
+
+        $actual = json_encode($this->order);
+
+        // -- Assert
+
+        $this->assertJsonStringEqualsJsonString($expected, $actual);
     }
 }

@@ -8,6 +8,7 @@ use AlexisPPLIN\SendcloudV3\Models\ModelInterface;
 use AlexisPPLIN\SendcloudV3\Utils\DateUtils;
 use DateTimeImmutable;
 use DateTimeInterface;
+use JsonSerializable;
 
 /**
  * Defined delivery dates
@@ -44,5 +45,20 @@ class DeliveryDates implements ModelInterface
             $handover_at,
             $deliver_at
         );
+    }
+
+    public function jsonSerialize() : array
+    {
+        $json = [];
+
+        if (isset($this->handover_at)) {
+            $json['handover_at'] = DateUtils::dateTimeToIso8601($this->handover_at);
+        }
+
+        if (isset($this->deliver_at)) {
+            $json['deliver_at'] = DateUtils::dateTimeToIso8601($this->deliver_at);
+        }
+
+        return $json;
     }
 }

@@ -4,6 +4,7 @@ namespace AlexisPPLIN\SendcloudV3\Models\Order;
 
 use AlexisPPLIN\SendcloudV3\Models\ModelInterface;
 use AlexisPPLIN\SendcloudV3\Models\Tax\TaxNumbers;
+use AlexisPPLIN\SendcloudV3\Utils\JsonUtils;
 
 /**
  * Customs information required for international shipments.
@@ -51,5 +52,17 @@ class CustomsDetails implements ModelInterface
             export_type:                isset($data['export_type'])                             ? (string) $data['export_type']                    : null,
             tax_numbers:                isset($data['tax_numbers'])                             ? TaxNumbers::fromData($data['tax_numbers']) : null
         );
+    }
+
+    public function jsonSerialize() : array
+    {
+        $json = [];
+
+        JsonUtils::addIfNotNull($json, 'commercial_invoice_number', $this->commercial_invoice_number);
+        JsonUtils::addIfNotNull($json, 'shipment_type', $this->shipment_type);
+        JsonUtils::addIfNotNull($json, 'export_type', $this->export_type);
+        JsonUtils::addIfNotNull($json, 'tax_numbers', $this->tax_numbers);
+
+        return $json;
     }
 }

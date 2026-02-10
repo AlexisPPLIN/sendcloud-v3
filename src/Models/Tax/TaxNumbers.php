@@ -48,4 +48,15 @@ class TaxNumbers implements ModelInterface
             importer_of_record: $importer_of_record
         );
     }
+
+    public function jsonSerialize() : array
+    {
+        $json = [
+            'sender' => $this->sender,
+            'receiver' => $this->receiver,
+            'importer_of_record' => $this->importer_of_record,
+        ];
+
+        return $json;
+    }
 }

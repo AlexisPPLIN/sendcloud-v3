@@ -27,4 +27,14 @@ class Price implements ModelInterface
             currency: (string) $data['currency']
         );
     }
+
+    public function jsonSerialize() : array
+    {
+        $json = [
+            'value' => $this->value,
+            'currency' => $this->currency
+        ];
+
+        return $json;
+    }
 }

@@ -44,4 +44,16 @@ class MeasurementDimension implements ModelInterface
             unit: (string) $data['unit']
         );
     }
+
+    public function jsonSerialize() : array
+    {
+        $json = [
+            'lenght' => $this->lenght,
+            'width' => $this->width,
+            'height' => $this->height,
+            'unit' => $this->unit
+        ];
+
+        return $json;
+    }
 }

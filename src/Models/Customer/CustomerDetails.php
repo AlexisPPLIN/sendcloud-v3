@@ -3,6 +3,7 @@
 namespace AlexisPPLIN\SendcloudV3\Models\Customer;
 
 use AlexisPPLIN\SendcloudV3\Models\ModelInterface;
+use JsonSerializable;
 
 /**
  * Node for an information about customer
@@ -31,5 +32,22 @@ class CustomerDetails implements ModelInterface
             phone_number:   isset($data['phone_number'])    ? (string) $data['phone_number']    : null,
             email:          isset($data['email'])           ? (string) $data['email']           : null,
         );
+    }
+
+    public function jsonSerialize() : array
+    {
+        $json = [
+            'name' => $this->name
+        ];
+
+        if (isset($this->phone_number)) {
+            $json['name'] = $this->phone_number;
+        }
+
+        if (isset($this->email)) {
+            $json['email'] = $this->email;
+        }
+
+        return $json;
     }
 }
