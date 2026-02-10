@@ -48,7 +48,6 @@ class DangerousGoods implements ModelInterface
 
     /**
      * @param ?string $chemical_record_identifier Chemical record identifier for the dangerous goods
-     * @param ?string $value Chemical record identifier for the dangerous goods
      * @param value-of<self::REGULATION_SETS> $regulation_set Regulation set governing the dangerous goods
      * @param ?string $packaging_type_quantity Quantity of packaging type
      * @param ?string $packaging_type Type of packaging used
