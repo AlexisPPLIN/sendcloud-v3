@@ -17,10 +17,10 @@ class DangerousGoods implements ModelInterface
     ];
 
     public const UNITS_OF_MESUREMENT = [
-        'KG',
-        'G',
-        'L',
-        'ML'
+        'kg',
+        'g',
+        'l',
+        'ml'
     ];
 
     public const COMMODITY_REGULATED_LEVEL_CODES = [
@@ -29,8 +29,10 @@ class DangerousGoods implements ModelInterface
     ];
 
     public const TRANSPORTATION_MODES = [
-        'LQ',
-        'EQ'
+        'Highway',
+        'Ground',
+        'PAX',
+        'CAO'
     ];
 
     public const ADR_PACKING_GROUPS = [
@@ -40,11 +42,12 @@ class DangerousGoods implements ModelInterface
     ];
 
     public const WEIGHT_TYPES = [
-        'Net',
-        'Gross'
+        'net',
+        'gross'
     ];
 
     /**
+     * @param ?string $chemical_record_identifier Chemical record identifier for the dangerous goods
      * @param ?string $value Chemical record identifier for the dangerous goods
      * @param value-of<self::REGULATION_SETS> $regulation_set Regulation set governing the dangerous goods
      * @param ?string $packaging_type_quantity Quantity of packaging type
@@ -59,7 +62,7 @@ class DangerousGoods implements ModelInterface
      * @param value-of<self::TRANSPORTATION_MODES> $transportation_mode Mode of transportation
      * @param ?string $emergency_contact_name Name of emergency contact person
      * @param ?string $emergency_contact_phone Phone number of emergency contact
-     * @param value-of<self::ADR_PACKING_GROUPS> $adr_packing_group_classification ADR packing group classification
+     * @param value-of<self::ADR_PACKING_GROUPS> $adr_packing_group_letter ADR packing group classification
      * @param ?string $local_proper_shipping_name Local proper shipping name
      * @param ?string $transport_category Transport category for ADR regulations
      * @param ?string $tunnel_restriction_code Tunnel restriction code
@@ -71,8 +74,8 @@ class DangerousGoods implements ModelInterface
         public readonly string $commodity_regulated_level_code,
         public readonly string $transportation_mode,
         public readonly string $weight_type,
-        public readonly string $adr_packing_group_classification,
-        public readonly ?string $value = null,
+        public readonly string $adr_packing_group_letter,
+        public readonly ?string $chemical_record_identifier = null,
         public readonly ?string $packaging_type_quantity = null,
         public readonly ?string $packaging_type = null,
         public readonly ?string $packaging_instruction_code = null,
@@ -97,8 +100,8 @@ class DangerousGoods implements ModelInterface
             commodity_regulated_level_code:     (string) $data['commodity_regulated_level_code'],
             transportation_mode:                (string) $data['transportation_mode'],
             weight_type:                        (string) $data['weight_type'],
-            adr_packing_group_classification:   (string) $data['adr_packing_group_classification'],
-            value:                              isset($data['value'])                       ? (string) $data['value']                       : null,
+            adr_packing_group_letter:           (string) $data['adr_packing_group_letter'],
+            chemical_record_identifier:         isset($data['chemical_record_identifier'])  ? (string) $data['chemical_record_identifier']  : null,
             packaging_type_quantity:            isset($data['packaging_type_quantity'])     ? (string) $data['packaging_type_quantity']     : null,
             packaging_type:                     isset($data['packaging_type'])              ? (string) $data['packaging_type']              : null,
             packaging_instruction_code:         isset($data['packaging_instruction_code'])  ? (string) $data['packaging_instruction_code']  : null,
@@ -122,10 +125,10 @@ class DangerousGoods implements ModelInterface
             'commodity_regulated_level_code' => $this->commodity_regulated_level_code,
             'transportation_mode' => $this->transportation_mode,
             'weight_type' => $this->weight_type,
-            'adr_packing_group_classification' => $this->adr_packing_group_classification
+            'adr_packing_group_letter' => $this->adr_packing_group_letter
         ];
 
-        JsonUtils::addIfNotNull($json, 'value', $this->value);
+        JsonUtils::addIfNotNull($json, 'chemical_record_identifier', $this->chemical_record_identifier);
         JsonUtils::addIfNotNull($json, 'packaging_type_quantity', $this->packaging_type_quantity);
         JsonUtils::addIfNotNull($json, 'packaging_type', $this->packaging_type);
         JsonUtils::addIfNotNull($json, 'packaging_instruction_code', $this->packaging_instruction_code);

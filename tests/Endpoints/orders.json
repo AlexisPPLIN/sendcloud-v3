@@ -1,79 +1,139 @@
 {
     "data": {
-        "id": "669",
-        "order_id": "555413",
-        "created_at": "2018-02-27T10:00:00.555309+00:00",
-        "modified_at": "2018-02-27T10:00:00.555309+00:00",
-        "order_number": "OXSDFGHTD-12",
+        "id": "752417284",
+        "order_id": "7bdd5bfd-76bc-4654-9d40-5d5d49f1cd6c",
+        "order_number": "101170081",
+        "created_at": "2026-02-09T16:00:17.040454+00:00",
+        "modified_at": "2026-02-09T16:00:17.111586+00:00",
         "order_details": {
             "integration": {
-                "id": 739283
+                "id": 1
             },
             "status": {
                 "code": "fulfilled",
-                "message": "Fulfilled"
+                "message": "Order has been fulfilled"
             },
-            "order_created_at": "2018-02-27T10:00:00.555309+00:00",
+            "order_created_at": "2026-02-09T10:00:00.556000+00:00",
             "order_updated_at": "2018-02-27T10:00:00.555309+00:00",
             "order_items": [
                 {
+                    "item_id": "5552",
                     "name": "Cylinder candle",
+                    "description": "Pebble green - 12x8 cm",
+                    "product_id": "1458734634",
+                    "variant_id": "15346645",
+                    "image_url": "https://i.ibb.co/6tLZ2Jz/orange.jpeg",
                     "measurement": {
+                        "dimension": {
+                            "length": 15.0,
+                            "width": 20.5,
+                            "height": 37.0,
+                            "unit": "cm"
+                        },
                         "weight": {
-                            "value": 1,
+                            "value": 14.5,
                             "unit": "kg"
+                        },
+                        "volume": {
+                            "value": 5,
+                            "unit": "l"
                         }
                     },
                     "quantity": 1,
-                    "unit_price": {
-                        "value": 3.5,
-                        "currency": "EUR"
+                    "sku": "WW-DR-GR-XS-001",
+                    "hs_code": "6205.20",
+                    "ean": "0799439112766",
+                    "properties": {
+                        "size": "red",
+                        "color": "green"
                     },
+                    "country_of_origin": "NL",
                     "total_price": {
                         "value": 3.5,
                         "currency": "EUR"
                     },
-                    "delivery_dates": {
-                        "handover_at": "2022-02-27T10:00:00.555309+00:00",
-                        "deliver_at": "2022-03-02T11:50:00.555309+00:00"
+                    "unit_price": {
+                        "value": 3.5,
+                        "currency": "EUR"
                     },
-                    "mid_code": "US1234567",
+                    "delivery_dates": {
+                        "handover_at": "2025-02-27T10:00:00.555309+00:00",
+                        "deliver_at": "2025-03-15T10:00:00.555309+00:00"
+                    },
+                    "mid_code": "NLOZR92MEL",
                     "material_content": "100% Cotton",
-                    "intended_use": "Personal use"
+                    "intended_use": "Personal use",
+                    "dangerous_goods": {
+                        "chemical_record_identifier": "1",
+                        "regulation_set": "IATA",
+                        "packaging_type_quantity": "type",
+                        "id_number": "123456",
+                        "class_division_number": "42",
+                        "quantity": "1",
+                        "unit_of_measurement": "kg",
+                        "proper_shipping_name": "product",
+                        "commodity_regulated_level_code": "LQ",
+                        "transportation_mode": "Highway",
+                        "emergency_contact_name": "John Doe",
+                        "emergency_contact_phone": "+319881729999",
+                        "adr_packing_group_letter": "I",
+                        "local_proper_shipping_name": "shipping",
+                        "transport_category": "transport",
+                        "tunnel_restriction_code": "tunnel",
+                        "weight_type": "net"
+                    }
                 }
+            ],
+            "notes": "Call this number before delivery: 063 874 6473",
+            "tags": [
+                "fragile",
+                "countryside warehouse"
             ]
         },
         "payment_details": {
-            "is_cash_on_delivery": true,
+            "subtotal_price": {
+                "value": 3.5,
+                "currency": "EUR"
+            },
+            "estimated_shipping_price": {
+                "value": 3.5,
+                "currency": "EUR"
+            },
+            "estimated_tax_price": {
+                "value": 3.5,
+                "currency": "EUR"
+            },
             "total_price": {
-                "value": 7,
+                "value": 3.5,
                 "currency": "EUR"
             },
             "status": {
                 "code": "paid",
-                "message": "Order has been paid"
+                "message": "Paid"
             },
+            "invoice_date": "2018-07-14",
             "discount_granted": {
-                "value": "3.99",
+                "value": 3.5,
                 "currency": "EUR"
             },
             "insurance_costs": {
-                "value": "9.99",
+                "value": 3.5,
                 "currency": "EUR"
             },
             "freight_costs": {
-                "value": "5.99",
+                "value": 3.5,
                 "currency": "EUR"
             },
             "other_costs": {
-                "value": "2.99",
+                "value": 3.5,
                 "currency": "EUR"
-            }
+            },
+            "is_cash_on_delivery": true
         },
         "customs_details": {
-            "commercial_invoice_number": "0124-03102022",
+            "commercial_invoice_number": "1002404102022",
             "shipment_type": "commercial_goods",
-            "export_type": "commercial_b2c",
+            "export_type": "private",
             "tax_numbers": {
                 "sender": [
                     {
@@ -85,26 +145,81 @@
                 "receiver": [
                     {
                         "name": "VAT",
-                        "country_code": "DE",
-                        "value": "DE123456789B03"
+                        "country_code": "NL",
+                        "value": "NL987654321B02"
                     }
                 ],
                 "importer_of_record": [
                     {
                         "name": "VAT",
                         "country_code": "NL",
-                        "value": "NL975318642B01"
+                        "value": "NL987654321B02"
                     }
                 ]
             }
         },
+        "customer_details": {
+            "name": "John Doe",
+            "phone_number": "+319881729999",
+            "email": "john@doe.com"
+        },
+        "billing_address": {
+            "name": "John Doe",
+            "address_line_1": "Lansdown Glade",
+            "house_number": "15",
+            "address_line_2": "a",
+            "postal_code": "5341XT",
+            "city": "Oss",
+            "country_code": "NL",
+            "email": "johndoe@gmail.com",
+            "phone_number": "+319881729999"
+        },
         "shipping_address": {
             "name": "John Doe",
-            "address_line_1": "Stadhuisplein",
+            "address_line_1": "Lansdown Glade",
             "house_number": "15",
-            "postal_code": "5341TW",
+            "address_line_2": "a",
+            "postal_code": "5341XT",
             "city": "Oss",
-            "country_code": "NL"
+            "country_code": "NL",
+            "email": "johndoe@gmail.com",
+            "phone_number": "+319881729999"
+        },
+        "shipping_details": {
+            "is_local_pickup": true,
+            "delivery_indicator": "DHL Home Delivery",
+            "measurement": {
+                "dimension": {
+                    "length": 15.0,
+                    "width": 20.5,
+                    "height": 37.0,
+                    "unit": "cm"
+                },
+                "weight": {
+                    "value": 14.5,
+                    "unit": "kg"
+                },
+                "volume": {
+                    "value": 5,
+                    "unit": "l"
+                }
+            },
+            "ship_with": {
+                "type": "shipping_option_code",
+                "properties": {
+                    "shipping_option_code": "postnl:standard"
+                }
+            }
+        },
+        "service_point_details": {
+            "id": "123",
+            "post_number": "some-post-number",
+            "latitude": "51.427063",
+            "longitude": "5.486414",
+            "type": "packstation",
+            "extra_data": {
+                "test": "test"
+            }
         }
     }
 }

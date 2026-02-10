@@ -41,7 +41,7 @@ class CustomerDetails implements ModelInterface
         ];
 
         if (isset($this->phone_number)) {
-            $json['name'] = $this->phone_number;
+            $json['phone_number'] = $this->phone_number;
         }
 
         if (isset($this->email)) {

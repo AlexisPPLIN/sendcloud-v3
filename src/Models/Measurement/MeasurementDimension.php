@@ -21,13 +21,13 @@ class MeasurementDimension implements ModelInterface
     ];
 
     /**
-     * @param float $lenght length in specified unit
+     * @param float $length length in specified unit
      * @param float $width width in specified unit
      * @param float $height height in specified unit
      * @param value-of<self::UNITS> $unit
      */
     public function __construct(
-        public readonly float $lenght,
+        public readonly float $length,
         public readonly float $width,
         public readonly float $height,
         public readonly string $unit
@@ -38,7 +38,7 @@ class MeasurementDimension implements ModelInterface
     public static function fromData(array $data) : self
     {
         return new self(
-            lenght: (float) $data['lenght'],
+            length: (float) $data['length'],
             width: (float) $data['width'],
             height: (float) $data['height'],
             unit: (string) $data['unit']
@@ -48,7 +48,7 @@ class MeasurementDimension implements ModelInterface
     public function jsonSerialize() : array
     {
         $json = [
-            'lenght' => $this->lenght,
+            'length' => $this->length,
             'width' => $this->width,
             'height' => $this->height,
             'unit' => $this->unit
