@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Test\AlexisPPLIN\SendcloudV3;
 
 use AlexisPPLIN\SendcloudV3\Endpoints\Orders;
+use AlexisPPLIN\SendcloudV3\Exceptions\DateParsingException;
+use AlexisPPLIN\SendcloudV3\Exceptions\SendcloudRequestException;
 use AlexisPPLIN\SendcloudV3\Factory\ClientFactory;
 use AlexisPPLIN\SendcloudV3\Models\Address;
 use AlexisPPLIN\SendcloudV3\Models\Customer\CustomerDetails;
@@ -30,6 +32,7 @@ use AlexisPPLIN\SendcloudV3\Models\Tax\TaxNumber;
 use AlexisPPLIN\SendcloudV3\Models\Tax\TaxNumbers;
 use AlexisPPLIN\SendcloudV3\Utils\DateUtils;
 use AlexisPPLIN\SendcloudV3\Utils\JsonUtils;
+use InvalidArgumentException;
 use Nyholm\Psr7\Response;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
@@ -64,33 +67,60 @@ use Http\Mock\Client;
 #[UsesClass(ClientFactory::class)]
 #[UsesClass(JsonUtils::class)]
 #[UsesClass(DateUtils::class)]
+#[UsesClass(SendcloudRequestException::class)]
 class OrdersTest extends TestCase
 {
-    private Orders $endpoint;
-
-    private string $json;
     private Order $order;
 
-    public function setUp(): void
+    /**
+     * @throws \Http\Discovery\Exception\NotFoundException
+     * @throws InvalidArgumentException
+     */
+    private function getJson(bool $one_order) : string
     {
+        $json = file_get_contents(__DIR__ . '/orders.json');
+
+        if ($one_order) {
+            $json = <<<EOF
+            {
+                "data": {$json}
+            }
+            EOF;
+        } else {
+            $json = <<<EOF
+            {
+                "data": [{$json}]
+            }
+            EOF;
+        }
+        
+        return $json;
+    }
+
+    public function getEndpoint(string $body, int $status = 200) : Orders
+    {
+        $client = new Client();
+        $client->addResponse(new Response(status: $status, body: $body));
+
         $publicKey = '123456';
         $secretKey = 'abcdef';
         $partnerId = '1';
         $apiBaseUrl = 'https://api.example.com/v3';
 
-        $this->json = file_get_contents(__DIR__ . '/orders.json');
-
-        $client = new Client();
-        $client->addResponse(new Response(body: $this->json));
-
-        $this->endpoint = new Orders(
+        return new Orders(
             $publicKey,
             $secretKey,
             $partnerId,
             $apiBaseUrl,
             $client
         );
+    }
 
+    /**
+     * @throws DateParsingException
+     */
+    public function setUp(): void
+    {
         $this->order = new Order(
             id: '752417284',
             order_id: '7bdd5bfd-76bc-4654-9d40-5d5d49f1cd6c',
@@ -323,9 +353,12 @@ class OrdersTest extends TestCase
         $order_id = 1;
         $expected = $this->order;
 
+        $json = $this->getJson(true);
+        $endpoint = $this->getEndpoint($json, 200);
+
         // -- Act
 
-        $actual = $this->endpoint->getOrder($order_id);
+        $actual = $endpoint->getOrder($order_id);
 
         // -- Assert
 
@@ -333,11 +366,25 @@ class OrdersTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
+    public function testGetOrderException() : void
+    {
+        // -- Arrange
+
+        $json = file_get_contents(__DIR__ . '/errors/400.json');
+        $endpoint = $this->getEndpoint($json, 400);
+
+        // -- Act & Assert
+
+        $this->expectException(SendcloudRequestException::class);
+
+        $endpoint->getOrder(1);
+    }
+
     public function testOrderJson() : void
     {
         // -- Arrange
 
-        $expected = $this->json;
+        $json = $this->getJson(true);
 
         // -- Act
 
@@ -345,6 +392,51 @@ class OrdersTest extends TestCase
 
         // -- Assert
 
-        $this->assertJsonStringEqualsJsonString($expected, $actual);
+        $this->assertJsonStringEqualsJsonString($json, $actual);
+    }
+
+    public function testGetOrders() : void
+    {
+        // -- Arrange
+
+        $json = $this->getJson(false);
+        $endpoint = $this->getEndpoint($json, 200);
+        $expected = [$this->order];
+
+        // -- Act
+
+        $actual = $endpoint->getOrders(
+            integration: [1],
+            order_number: '1',
+            order_id: '1',
+            status: '1',
+            order_created_at: '1',
+            order_created_at_min: '1',
+            order_created_at_max: '1',
+            order_updated_at: '1',
+            order_updated_at_min: '1',
+            order_updated_at_max: '1',
+            sort: '1',
+            page_size: 1,
+            cursor: '1',
+        );
+
+        // -- Assert
+
+        $this->assertEquals($expected, $actual);
+    }
+
+    public function testGetOrdersException() : void
+    {
+        // -- Arrange
+
+        $json = file_get_contents(__DIR__ . '/errors/400.json');
+        $endpoint = $this->getEndpoint($json, 400);
+
+        // -- Act & Assert
+
+        $this->expectException(SendcloudRequestException::class);
+
+        $endpoint->getOrders();
     }
 }

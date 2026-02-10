@@ -4,7 +4,7 @@ namespace AlexisPPLIN\SendcloudV3\Utils;
 
 use AlexisPPLIN\SendcloudV3\Exceptions\DateParsingException;
 use DateTimeImmutable;
-use DateTimeInterface;
+use ValueError;
 
 class DateUtils
 {
@@ -16,7 +16,12 @@ class DateUtils
      */
     public static function iso8601ToDateTime(string $iso8601) : DateTimeImmutable
     {
-        $date = DateTimeImmutable::createFromFormat(self::DATE_FORMAT, $iso8601);
+        try {
+            $date = DateTimeImmutable::createFromFormat(self::DATE_FORMAT, $iso8601);
+        } catch (ValueError $e) {
+            throw new DateParsingException("Error when parsing ISO 8601 date ({$iso8601})", 0, $e);
+        }
+        
         if (!$date) {
             throw new DateParsingException("Error when parsing ISO 8601 date ({$iso8601})");
         }

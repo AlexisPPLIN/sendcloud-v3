@@ -3,8 +3,11 @@
 namespace AlexisPPLIN\SendcloudV3\Endpoints;
 
 use AlexisPPLIN\SendcloudV3\Client;
+use AlexisPPLIN\SendcloudV3\Exceptions\SendcloudRequestException;
 use AlexisPPLIN\SendcloudV3\Models\Order\Order;
+use Exception;
 use Http\Discovery\Psr17FactoryDiscovery;
+use Throwable;
 
 class Orders extends Client
 {
@@ -13,13 +16,22 @@ class Orders extends Client
      * Find a specific order by its order ID.
      * 
      * @see https://sendcloud.dev/api/v3/orders/retrieve-an-order
+     *
+     * @throws SendcloudRequestException
      */
     public function getOrder(int $id): Order
     {
-        $response = $this->client->get('/orders/' . $id);
-        $body = $response->getBody()->getContents();
+        try {
+            $response = $this->client->get('/orders/' . $id);
 
-        return Order::fromData(json_decode($body, true)['data']);
+            SendcloudRequestException::fromResponse($response);
+
+            $body = $response->getBody()->getContents();
+
+            return Order::fromData(json_decode($body, true)['data']);
+        } catch (Throwable $e) {
+            SendcloudRequestException::fromException($e);
+        }
     }
 
     /**
@@ -63,6 +75,8 @@ class Orders extends Client
      *                Example:
      *                "cj0xJnA9MzAw"
      * @return array<Order>
+     * 
+     * @throws SendcloudRequestException
      */
     public function getOrders(
         ?array $integration = null,
@@ -137,21 +151,26 @@ class Orders extends Client
 
         $uri = '/orders?' . http_build_query($query);
         
-        // Send request
+        try {
+            // Send request
 
-        $response = $this->client->get($uri);
+            $response = $this->client->get($uri);
+            SendcloudRequestException::fromResponse($response);
 
-        // Parse response
+            // Parse response
 
-        $body = $response->getBody()->getContents();
-        $response = json_decode($body, true);
+            $body = $response->getBody()->getContents();
+            $response = json_decode($body, true);
 
-        $orders = [];
-        foreach ($response['data'] as $order) {
-            $orders[] = Order::fromData($order);
+            $orders = [];
+            foreach ($response['data'] as $order) {
+                $orders[] = Order::fromData($order);
+            }
+
+            return $orders;
+        } catch (Throwable $e) {
+           SendcloudRequestException::fromException($e);
         }
-
-        return $orders;
     }
 
     /**
@@ -159,14 +178,22 @@ class Orders extends Client
      * Partially update some fields of an order.
      *
      * @see https://sendcloud.dev/api/v3/orders/update-an-order
+     * 
+     * @throws SendcloudRequestException
      */
     public function updateOrder(
         int $id,
         Order $order
     ): void {
-        $body = json_encode($order);
-        $response = $this->client->patch('/orders/' . $id, [], $body);
+        try {
+            $body = json_encode($order);
+            $response = $this->client->patch('/orders/' . $id, [], $body);
 
-        $body = $response->getBody()->getContents();
+            SendcloudRequestException::fromResponse($response);
+
+            $body = $response->getBody()->getContents();
+        } catch (Throwable $e) {
+            SendcloudRequestException::fromException($e);
+        }
     }
 }

@@ -9,6 +9,7 @@ use Http\Client\Common\HttpMethodsClient;
 use Http\Client\HttpClient;
 use Http\Discovery\HttpClientDiscovery;
 use Http\Discovery\Psr17FactoryDiscovery;
+use InvalidArgumentException;
 
 class Client
 {
@@ -16,6 +17,10 @@ class Client
 
     protected HttpMethodsClient $client;
 
+    /**
+     * @throws \Http\Discovery\Exception\NotFoundException
+     * @throws InvalidArgumentException
+     */
     public function __construct(
         protected string $publicKey,
         protected string $secretKey,

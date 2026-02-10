@@ -12,11 +12,14 @@ use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Discovery\Psr18ClientDiscovery;
 use Http\Message\Authentication\BasicAuth;
+use InvalidArgumentException;
 
 class ClientFactory
 {
     /**
      * @param array<Plugin> $plugins
+     * @throws \Http\Discovery\Exception\NotFoundException
+     * @throws InvalidArgumentException
      */
     public static function create(
         string $base_uri,
@@ -29,7 +32,6 @@ class ClientFactory
         if (!$client) {
             $client = Psr18ClientDiscovery::find();
         }
-        $plugins[] = new ErrorPlugin();
 
         // Basic auth
 
