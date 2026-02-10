@@ -38,13 +38,16 @@ class SendcloudRequestException extends Exception
      */
     public static function fromResponse(ResponseInterface $response) : void
     {
-        $code = null;
+        if ($response->getStatusCode() === 200) {
+            return;
+        }
+
+        $code = self::CODE_UNKNOWN;
+
         if ($response->getStatusCode() === 401) {
             $code = self::CODE_AUTHENTIFICATION_FAILED;
         } else if ($response->getStatusCode() === 400) {
             $code = self::CODE_INVALID;
-        } else {
-            return;
         }
 
         try {
