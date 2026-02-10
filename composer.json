@@ -42,13 +42,16 @@
         "phpunit/phpunit": "^11.5",
         "phpunit/php-code-coverage": "^11.0",
         "php-http/mock-client": "^1.6",
-        "symfony/http-client": "^8.0",
-        "nyholm/psr7": "^1.8"
+        "nyholm/psr7": "^1.8",
+        "symfony/http-client": "^7.4"
     },
     "scripts": {
         "test": "vendor/bin/phpunit"
     },
     "config": {
+        "platform": {
+            "php": "8.2"
+        },
         "allow-plugins": {
             "php-http/discovery": false
         }
