@@ -7,6 +7,7 @@ use AlexisPPLIN\SendcloudV3\Exceptions\SendcloudRequestException;
 use AlexisPPLIN\SendcloudV3\Models\Order\Order;
 use Exception;
 use Http\Discovery\Psr17FactoryDiscovery;
+use InvalidArgumentException;
 use Throwable;
 
 class Orders extends Client
@@ -179,19 +180,79 @@ class Orders extends Client
      *
      * @see https://sendcloud.dev/api/v3/orders/update-an-order
      * 
+     * @return int Sendcloud order ID
      * @throws SendcloudRequestException
+     * @throws InvalidArgumentException
      */
     public function updateOrder(
-        int $id,
         Order $order
-    ): void {
+    ): int {
+        if (!isset($order->id)) {
+            throw new InvalidArgumentException('Order id is null');
+        }
+
         try {
             $body = json_encode($order);
-            $response = $this->client->patch('/orders/' . $id, [], $body);
+            $response = $this->client->patch('/orders/' . $order->id, [], $body);
 
             SendcloudRequestException::fromResponse($response);
 
             $body = $response->getBody()->getContents();
+            $json = json_decode($body, true);
+
+            return (int) $json['data']['id'];
+        } catch (Throwable $e) {
+            SendcloudRequestException::fromException($e);
+        }
+    }
+
+    /**
+     * Create/Update orders in batch
+     * Use this endpoint to insert orders into a Sendcloud API integration.
+     * 
+     * @see https://sendcloud.dev/api/v3/orders/create-update-orders-in-batch
+     * 
+     * @param array<Order> $orders
+     * @return array<int> Sendcloud orders IDs
+     * 
+     * @throws SendcloudRequestException
+     */
+    public function createOrder(
+        array $orders
+    ) : array {
+        try {
+            $body = json_encode($orders);
+            $response = $this->client->post('/orders', [], $body);
+
+            SendcloudRequestException::fromResponse($response);
+
+            $body = $response->getBody()->getContents();
+            $json = json_decode($body, true);
+
+            $ids = array_column($json['data'], 'id');
+            $ids = array_map('intval', $ids);
+
+            return $ids;
+        } catch (Throwable $e) {
+            SendcloudRequestException::fromException($e);
+        }
+    }
+
+    /**
+     * Delete an order
+     * Delete an order by its unique id.
+     * 
+     * @see https://sendcloud.dev/api/v3/orders/delete-an-order
+     * 
+     * @throws SendcloudRequestException
+     */
+    public function deleteOrder(
+        int $id
+    ): void {
+        try {
+            $response = $this->client->post('/orders/' . $id);
+
+            SendcloudRequestException::fromResponse($response);
         } catch (Throwable $e) {
             SendcloudRequestException::fromException($e);
         }

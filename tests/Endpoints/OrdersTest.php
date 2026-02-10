@@ -116,13 +116,10 @@ class OrdersTest extends TestCase
         );
     }
 
-    /**
-     * @throws DateParsingException
-     */
-    public function setUp(): void
+    private function generateOrder(bool $with_id = true) : Order
     {
-        $this->order = new Order(
-            id: '752417284',
+        return new Order(
+            id: $with_id ? '752417284' : null,
             order_id: '7bdd5bfd-76bc-4654-9d40-5d5d49f1cd6c',
             order_number: '101170081',
             created_at: DateUtils::iso8601ToDateTime('2026-02-09T16:00:17.040454+00:00'),
@@ -346,6 +343,16 @@ class OrdersTest extends TestCase
         );
     }
 
+    /**
+     * @throws DateParsingException
+     */
+    public function setUp(): void
+    {
+        $this->order = $this->generateOrder();
+    }
+
+    /* getOrder */
+
     public function testGetOrder() : void
     {
         // -- Arrange
@@ -388,12 +395,14 @@ class OrdersTest extends TestCase
 
         // -- Act
 
-        $actual = json_encode($this->order);
+        $actual = json_encode(['data' => $this->order]);
 
         // -- Assert
 
         $this->assertJsonStringEqualsJsonString($json, $actual);
     }
+
+    /* getOrders */
 
     public function testGetOrders() : void
     {
@@ -438,5 +447,141 @@ class OrdersTest extends TestCase
         $this->expectException(SendcloudRequestException::class);
 
         $endpoint->getOrders();
+    }
+
+    /* updateOrder */
+
+    public function testUpdateOrder() : void
+    {
+        // -- Arrange
+
+        $expected = 669;
+        $json = <<<JSON
+        {
+            "data": {
+                "id": {$expected},
+                "order_id": "555413",
+                "order_number": "OXSDFGHTD-12"
+            }
+        }
+        JSON;
+        $endpoint = $this->getEndpoint($json, 200);
+
+        // -- Act
+
+        $result = $endpoint->updateOrder($this->order);
+
+        // -- Assert
+
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testUpdateOrderException() : void
+    {
+        // -- Arrange
+
+        $json = file_get_contents(__DIR__ . '/errors/400.json');
+        $endpoint = $this->getEndpoint($json, 400);
+
+        // -- Act & Assert
+
+        $this->expectException(SendcloudRequestException::class);
+
+        $endpoint->updateOrder($this->order);
+    }
+
+    public function testUpdateOrderWithNullId() : void
+    {
+        // -- Arrange
+
+        $json = file_get_contents(__DIR__ . '/errors/400.json');
+        $endpoint = $this->getEndpoint($json, 400);
+
+        $order = $this->generateOrder(false);
+
+        // -- Act & Assert
+
+        $this->expectException(InvalidArgumentException::class);
+
+        $endpoint->updateOrder($order);
+    }
+
+    /* createOrder */
+
+    public function testCreateOrder() : void
+    {
+        // -- Arrange
+
+        $expected = [669];
+        $json = <<<JSON
+        {
+            "data": [
+                {
+                    "id": {$expected[0]},
+                    "order_id": "555413",
+                    "order_number": "OXSDFGHTD-12"
+                }
+            ]
+        }
+        JSON;
+        $endpoint = $this->getEndpoint($json, 200);
+
+        // -- Act
+
+        $result = $endpoint->createOrder([
+            $this->order
+        ]);
+
+        // -- Assert
+
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testCreateOrderException() : void
+    {
+        // -- Arrange
+
+        $json = file_get_contents(__DIR__ . '/errors/400.json');
+        $endpoint = $this->getEndpoint($json, 400);
+
+        // -- Act & Assert
+
+        $this->expectException(SendcloudRequestException::class);
+
+        $endpoint->createOrder([
+            $this->order
+        ]);
+    }
+
+    /* deleteOrder */
+
+    public function testDeleteOrder() : void
+    {
+        // -- Arrange
+
+        $order_id = 1;
+        $endpoint = $this->getEndpoint('', 200);
+
+        // -- Act & Assert
+
+        $endpoint->deleteOrder($order_id);
+
+        $this->expectNotToPerformAssertions();
+    }
+
+    public function testDeleteOrderException() : void
+    {
+        // -- Arrange
+
+        $order_id = 1;
+
+        $json = file_get_contents(__DIR__ . '/errors/400.json');
+        $endpoint = $this->getEndpoint($json, 400);
+
+        // -- Act & Assert
+
+        $this->expectException(SendcloudRequestException::class);
+
+        $endpoint->deleteOrder($order_id);
     }
 }

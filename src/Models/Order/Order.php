@@ -89,6 +89,6 @@ class Order implements ModelInterface
         JsonUtils::addIfNotNull($json, 'shipping_details', $this->shipping_details);
         JsonUtils::addIfNotNull($json, 'service_point_details', $this->service_point_details);
 
-        return ['data' => $json];
+        return $json;
     }
 }

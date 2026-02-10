@@ -39,7 +39,8 @@ class Client
 
         $this->client = new HttpMethodsClient(
             $client,
-            Psr17FactoryDiscovery::findRequestFactory()
+            Psr17FactoryDiscovery::findRequestFactory(),
+            Psr17FactoryDiscovery::findStreamFactory()
         );
     }
 }
