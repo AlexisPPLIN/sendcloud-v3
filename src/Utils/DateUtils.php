@@ -14,7 +14,7 @@ class DateUtils
      */
     public static function iso8601ToDateTime(string $iso8601) : DateTimeImmutable
     {
-        $date = DateTimeImmutable::createFromFormat(DateTimeInterface::ISO8601, $iso8601);
+        $date = DateTimeImmutable::createFromFormat("Y-m-d\TH:i:s.up", $iso8601);
         if (!$date) {
             throw new DateParsingException("Error when parsing ISO 8601 date ({$iso8601})");
         }

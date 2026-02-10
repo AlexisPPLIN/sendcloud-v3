@@ -2,13 +2,20 @@
 
 namespace AlexisPPLIN\SendcloudV3\Models\Order;
 
-use DateTimeImmutable;
+use AlexisPPLIN\SendcloudV3\Models\ModelInterface;
 
-class OrderDetailsIntegration
+class OrderDetailsIntegration implements ModelInterface
 {
     public function __construct(
         public readonly int $id
     ) {
 
+    }
+
+    public static function fromData(array $data) : self
+    {
+        return new self(
+            id: (int) $data['id']
+        );
     }
 }

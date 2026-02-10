@@ -90,19 +90,25 @@ class DangerousGoods implements ModelInterface
     public static function fromData(array $data) : self
     {
         return new self(
-            regulation_set: (string) $data['regulation_set'],
-            unit_of_measurement: (string) $data['unit_of_measurement'],
-            commodity_regulated_level_code: (string) $data['commodity_regulated_level_code'],
-            transportation_mode: (string) $data['transportation_mode'],
-            weight_type: (string) $data['weight_type'],
-            adr_packing_group_classification: (string) $data['adr_packing_group_classification'],
-            value: isset($data['value']) ? (string) $data['value'] : null,
-            packaging_type_quantity: isset($data['packaging_type_quantity']) ? (string) $data['packaging_type_quantity'] : null,
-            packaging_type: isset($data['packaging_type']) ? (string) $data['packaging_type'] : null,
-            packaging_instruction_code: isset($data['packaging_instruction_code']) ? (string) $data['packaging_instruction_code'] : null,
-            id_number: isset($data['id_number']) ? (string) $data['id_number'] : null,
-            class_division_number: isset($data['class_division_number']) ? (string) $data['class_division_number'] : null,
-            // TODO : finish this
+            regulation_set:                     (string) $data['regulation_set'],
+            unit_of_measurement:                (string) $data['unit_of_measurement'],
+            commodity_regulated_level_code:     (string) $data['commodity_regulated_level_code'],
+            transportation_mode:                (string) $data['transportation_mode'],
+            weight_type:                        (string) $data['weight_type'],
+            adr_packing_group_classification:   (string) $data['adr_packing_group_classification'],
+            value:                              isset($data['value'])                       ? (string) $data['value']                       : null,
+            packaging_type_quantity:            isset($data['packaging_type_quantity'])     ? (string) $data['packaging_type_quantity']     : null,
+            packaging_type:                     isset($data['packaging_type'])              ? (string) $data['packaging_type']              : null,
+            packaging_instruction_code:         isset($data['packaging_instruction_code'])  ? (string) $data['packaging_instruction_code']  : null,
+            id_number:                          isset($data['id_number'])                   ? (string) $data['id_number']                   : null,
+            class_division_number:              isset($data['class_division_number'])       ? (string) $data['class_division_number']       : null,
+            quantity:                           isset($data['quantity'])                    ? (string) $data['quantity']                    : null,
+            proper_shipping_name:               isset($data['proper_shipping_name'])        ? (string) $data['proper_shipping_name']        : null,
+            emergency_contact_name:             isset($data['emergency_contact_name'])      ? (string) $data['emergency_contact_name']      : null,
+            emergency_contact_phone:            isset($data['emergency_contact_phone'])     ? (string) $data['emergency_contact_phone']     : null,
+            local_proper_shipping_name:         isset($data['local_proper_shipping_name'])  ? (string) $data['local_proper_shipping_name']  : null,
+            transport_category:                 isset($data['transport_category'])          ? (string) $data['transport_category']          : null,
+            tunnel_restriction_code:            isset($data['tunnel_restriction_code'])     ? (string) $data['tunnel_restriction_code']     : null
         );
     }
 }

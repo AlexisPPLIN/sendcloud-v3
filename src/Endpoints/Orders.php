@@ -3,7 +3,7 @@
 namespace AlexisPPLIN\SendcloudV3\Endpoints;
 
 use AlexisPPLIN\SendcloudV3\Client;
-use AlexisPPLIN\SendcloudV3\Models\Order;
+use AlexisPPLIN\SendcloudV3\Models\Order\Order;
 
 class Orders extends Client
 {

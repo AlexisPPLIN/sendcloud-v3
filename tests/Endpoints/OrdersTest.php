@@ -6,7 +6,17 @@ namespace Test\AlexisPPLIN\SendcloudV3;
 
 use AlexisPPLIN\SendcloudV3\Endpoints\Orders;
 use AlexisPPLIN\SendcloudV3\Factory\ClientFactory;
-use AlexisPPLIN\SendcloudV3\Models\Order;
+use AlexisPPLIN\SendcloudV3\Models\Delivery\DeliveryDates;
+use AlexisPPLIN\SendcloudV3\Models\Measurement\Measurement;
+use AlexisPPLIN\SendcloudV3\Models\Measurement\MeasurementWeight;
+use AlexisPPLIN\SendcloudV3\Models\Order\Order;
+use AlexisPPLIN\SendcloudV3\Models\Order\OrderDetails;
+use AlexisPPLIN\SendcloudV3\Models\Order\OrderDetailsIntegration;
+use AlexisPPLIN\SendcloudV3\Models\Order\OrderDetailsStatus;
+use AlexisPPLIN\SendcloudV3\Models\Order\OrderItems;
+use AlexisPPLIN\SendcloudV3\Models\Price;
+use AlexisPPLIN\SendcloudV3\Utils\DateUtils;
+use DateTimeImmutable;
 use Nyholm\Psr7\Response;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\CoversMethod;
@@ -18,6 +28,15 @@ use Http\Mock\Client;
 
 #[CoversClass(Orders::class)]
 #[CoversClass(Order::class)]
+#[CoversClass(DeliveryDates::class)]
+#[CoversClass(Measurement::class)]
+#[CoversClass(MeasurementWeight::class)]
+#[CoversClass(OrderDetails::class)]
+#[CoversClass(OrderDetailsIntegration::class)]
+#[CoversClass(OrderItems::class)]
+#[CoversClass(Price::class)]
+#[CoversClass(DateUtils::class)]
+#[CoversClass(OrderDetailsStatus::class)]
 #[UsesClass(Client::class)]
 #[UsesClass(ClientFactory::class)]
 class OrdersTest extends TestCase
@@ -161,7 +180,46 @@ class OrdersTest extends TestCase
         $order_id = 1;
         $expected = new Order(
             order_id: '555413',
-            order_number: 'OXSDFGHTD-12'
+            order_number: 'OXSDFGHTD-12',
+            order_details: new OrderDetails(
+                integration: new OrderDetailsIntegration(
+                    id: 739283
+                ),
+                status: new OrderDetailsStatus(
+                    code: 'fulfilled',
+                    message: 'Fulfilled'
+                ),
+                order_created_at: DateUtils::iso8601ToDateTime('2018-02-27T10:00:00.555Z'),
+                order_updated_at: DateUtils::iso8601ToDateTime('2018-02-27T10:00:00.555Z'),
+                order_items: [
+                    new OrderItems(
+                        name: 'Cylinder candle',
+                        quantity: 1,
+                        measurement: new Measurement(
+                            weight: new MeasurementWeight(
+                                value: 1,
+                                unit: 'kg'
+                            )
+                        ),
+                        unit_price: new Price(
+                            value: 3.5,
+                            currency: 'EUR'
+                        ),
+                        total_price: new Price(
+                            value: 3.5,
+                            currency: 'EUR'
+                        ),
+                        delivery_dates: new DeliveryDates(
+                            handover_at: DateUtils::iso8601ToDateTime('2022-02-27T10:00:00.555309+00:00'),
+                            deliver_at: DateUtils::iso8601ToDateTime('2022-03-02T11:50:00.555309+00:00'),
+                        ),
+                        mid_code: 'US1234567',
+                        material_content: '100% Cotton',
+                        intended_use: 'Personal use',
+                    )
+                ],
+                notes: ''
+            )
         );
 
         // -- Act

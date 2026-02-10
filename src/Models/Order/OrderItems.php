@@ -5,13 +5,13 @@ namespace AlexisPPLIN\SendcloudV3\Models\Order;
 use AlexisPPLIN\SendcloudV3\Models\DangerousGoods;
 use AlexisPPLIN\SendcloudV3\Models\Delivery\DeliveryDates;
 use AlexisPPLIN\SendcloudV3\Models\Measurement\Measurement;
+use AlexisPPLIN\SendcloudV3\Models\ModelInterface;
 use AlexisPPLIN\SendcloudV3\Models\Price;
-use DateTimeImmutable;
 
 /**
  * @see https://sendcloud.dev/api/v3/orders/retrieve-an-order#response-data-order-details-order-items
  */
-class OrderItems
+class OrderItems implements ModelInterface
 {
     /**
      * @param $name The name of ordered product
@@ -62,5 +62,31 @@ class OrderItems
 
     ) {
 
+    }
+
+    public static function fromData(array $data) : self
+    {
+        return new self(
+            name:               (string) $data['name'],
+            quantity:           (int) $data['quantity'],
+            total_price:        isset($data['total_price'])         ? Price::fromData($data['total_price'])              : null,
+            item_id:            isset($data['item_id'])             ? (string) $data['item_id']                                : null,
+            product_id:         isset($data['product_id'])          ? (string) $data['product_id']                             : null,
+            variant_id:         isset($data['variant_id'])          ? (string) $data['variant_id']                             : null,
+            image_url:          isset($data['image_url'])           ? (string) $data['image_url']                              : null,
+            description:        isset($data['description'])         ? (string) $data['description']                            : null,
+            sku:                isset($data['sku'])                 ? (string) $data['sku']                                    : null,
+            hs_code:            isset($data['hs_code'])             ? (string) $data['hs_code']                                : null,
+            country_of_origin:  isset($data['country_of_origin'])   ? (string) $data['country_of_origin']                      : null,
+            properties:         isset($data['properties'])          ? $data['properties']                                      : null,
+            unit_price:         isset($data['unit_price'])          ? Price::fromData($data['unit_price'])               : null,
+            measurement:        isset($data['measurement'])         ? Measurement::fromData($data['measurement'])        : null,
+            ean:                isset($data['ean'])                 ? (string) $data['ean']                                    : null,
+            delivery_dates:     isset($data['delivery_dates'])      ? DeliveryDates::fromData($data['delivery_dates'])   : null,
+            mid_code:           isset($data['mid_code'])            ? (string) $data['mid_code']                               : null,
+            material_content:   isset($data['material_content'])    ? (string) $data['material_content']                       : null,
+            intended_use:       isset($data['intended_use'])        ? (string) $data['intended_use']                           : null,
+            dangerous_goods:    isset($data['dangerous_goods'])     ? DangerousGoods::fromData($data['dangerous_goods']) : null
+        );
     }
 }

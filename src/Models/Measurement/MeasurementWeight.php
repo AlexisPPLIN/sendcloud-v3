@@ -13,12 +13,10 @@ use AlexisPPLIN\SendcloudV3\Models\ModelInterface;
 class MeasurementWeight implements ModelInterface
 {
     public const UNITS = [
-        'cm',
-        'mm',
-        'm',
-        'yd',
-        'ft',
-        'in'
+        'kg',
+        'g',
+        'lbs',
+        'oz'
     ];
 
     /**
