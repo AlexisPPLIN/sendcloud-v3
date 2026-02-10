@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace AlexisPPLIN\SendcloudV3\Factory;
 
 use Http\Client\Common\Plugin\BaseUriPlugin;
@@ -29,7 +31,7 @@ class ClientFactory
         array $plugins = [],
         ?HttpClient $client = null
     ): PluginClient {
-        if (!$client) {
+        if ($client === null) {
             $client = Psr18ClientDiscovery::find();
         }
 

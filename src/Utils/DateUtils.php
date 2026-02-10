@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace AlexisPPLIN\SendcloudV3\Utils;
 
 use AlexisPPLIN\SendcloudV3\Exceptions\DateParsingException;
@@ -18,12 +20,12 @@ class DateUtils
     {
         try {
             $date = DateTimeImmutable::createFromFormat(self::DATE_FORMAT, $iso8601);
-        } catch (ValueError $e) {
-            throw new DateParsingException("Error when parsing ISO 8601 date ({$iso8601})", 0, $e);
+        } catch (ValueError $valueError) {
+            throw new DateParsingException(sprintf('Error when parsing ISO 8601 date (%s)', $iso8601), 0, $valueError);
         }
         
         if (!$date) {
-            throw new DateParsingException("Error when parsing ISO 8601 date ({$iso8601})");
+            throw new DateParsingException(sprintf('Error when parsing ISO 8601 date (%s)', $iso8601));
         }
 
         return $date;

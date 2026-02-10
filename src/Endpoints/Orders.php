@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace AlexisPPLIN\SendcloudV3\Endpoints;
 
 use AlexisPPLIN\SendcloudV3\Client;
@@ -30,8 +32,8 @@ class Orders extends Client
             $body = $response->getBody()->getContents();
 
             return Order::fromData(json_decode($body, true)['data']);
-        } catch (Throwable $e) {
-            SendcloudRequestException::fromException($e);
+        } catch (Throwable $throwable) {
+            SendcloudRequestException::fromException($throwable);
         }
     }
 
@@ -169,8 +171,8 @@ class Orders extends Client
             }
 
             return $orders;
-        } catch (Throwable $e) {
-           SendcloudRequestException::fromException($e);
+        } catch (Throwable $throwable) {
+           SendcloudRequestException::fromException($throwable);
         }
     }
 
@@ -201,8 +203,8 @@ class Orders extends Client
             $json = json_decode($body, true);
 
             return (int) $json['data']['id'];
-        } catch (Throwable $e) {
-            SendcloudRequestException::fromException($e);
+        } catch (Throwable $throwable) {
+            SendcloudRequestException::fromException($throwable);
         }
     }
 
@@ -233,8 +235,8 @@ class Orders extends Client
             $ids = array_map('intval', $ids);
 
             return $ids;
-        } catch (Throwable $e) {
-            SendcloudRequestException::fromException($e);
+        } catch (Throwable $throwable) {
+            SendcloudRequestException::fromException($throwable);
         }
     }
 
@@ -253,8 +255,8 @@ class Orders extends Client
             $response = $this->client->post('/orders/' . $id);
 
             SendcloudRequestException::fromResponse($response);
-        } catch (Throwable $e) {
-            SendcloudRequestException::fromException($e);
+        } catch (Throwable $throwable) {
+            SendcloudRequestException::fromException($throwable);
         }
     }
 }

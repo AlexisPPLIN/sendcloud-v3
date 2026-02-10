@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace AlexisPPLIN\SendcloudV3\Models;
 
 class Price implements ModelInterface

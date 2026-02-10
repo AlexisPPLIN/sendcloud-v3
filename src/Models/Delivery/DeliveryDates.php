@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace AlexisPPLIN\SendcloudV3\Models\Delivery;
 
 use AlexisPPLIN\SendcloudV3\Exceptions\ModelFromDataException;

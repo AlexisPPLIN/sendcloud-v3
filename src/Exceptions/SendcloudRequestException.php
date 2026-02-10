@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace AlexisPPLIN\SendcloudV3\Exceptions;
 
 use Exception;
@@ -11,8 +13,11 @@ use Throwable;
 class SendcloudRequestException extends Exception
 {
     public const CODE_UNKNOWN = 0;
+
     public const CODE_CONNECTION_FAILED = 1;
+
     public const CODE_AUTHENTIFICATION_FAILED = 2;
+
     public const CODE_INVALID = 3;
 
     /**
@@ -55,7 +60,7 @@ class SendcloudRequestException extends Exception
         } catch (HttpException|RuntimeException $e) {
             self::fromException($e);
         }
-        
+
         $responseData = json_decode($result, true);
         $sc_code = $responseData['errors'][0]['code'] ?? null;
         $detail = $responseData['errors'][0]['detail'] ?? null;

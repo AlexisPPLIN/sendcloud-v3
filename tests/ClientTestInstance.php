@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Test\AlexisPPLIN\SendcloudV3;
 
 use AlexisPPLIN\SendcloudV3\Client;
@@ -10,4 +12,4 @@ class ClientTestInstance extends Client {
     {
         return $this->client;
     }
-};
+}
