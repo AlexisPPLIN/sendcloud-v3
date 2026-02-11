@@ -5,10 +5,10 @@
 
 ## 📦 About
 
-Implementation of Sendcloud v3 API for PHP
+Implementation of [Sendcloud v3 API](https://sendcloud.dev/api/v3) for PHP
 
 > [!NOTE]
-> For v2 users, use [Webador/sendcloud](https://github.com/Webador/sendcloud)
+> For v2 users, use [Webador/sendcloud](https://github.com/Webador/sendcloud)  
 > (which this library is heavily inspired by)
 
 ## ⚙️ Requirements
