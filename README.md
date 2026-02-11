@@ -1,7 +1,6 @@
 # Sendcloud
 
 ![Packagist Version](https://img.shields.io/packagist/v/alexispplin/sendcloud-v3?link=https%3A%2F%2Fpackagist.org%2Fpackages%2Falexispplin%2Fsendcloud-v3)
-![PHP Version](https://img.shields.io/badge/php-%3E%3D8.2-8892BF.svg)
 ![License](https://img.shields.io/github/license/AlexisPPLIN/sendcloud-v3)
 
 ## 📦 About
@@ -10,6 +9,7 @@ Implementation of Sendcloud v3 API for PHP
 
 > [!NOTE]
 > For v2 users, use [Webador/sendcloud](https://github.com/Webador/sendcloud)
+> (which this library is heavily inspired by)
 
 ## ⚙️ Requirements
 
