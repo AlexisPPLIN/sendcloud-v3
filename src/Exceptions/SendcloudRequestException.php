@@ -46,12 +46,14 @@ class SendcloudRequestException extends Exception
 
     /**
      * Checks response for errors code and throws exception if needed
+     * 
+     * @param $expected_status_code Expected HTTP status code in response
      *
      * @throws SendcloudRequestException
      */
-    public static function fromResponse(ResponseInterface $response) : void
+    public static function fromResponse(ResponseInterface $response, int $expected_status_code = 200) : void
     {
-        if ($response->getStatusCode() === 200) {
+        if ($response->getStatusCode() === $expected_status_code) {
             return;
         }
 
