@@ -31,8 +31,8 @@ class OrderDetails implements ModelInterface
         public readonly Status $status,
         public readonly DateTimeImmutable $order_created_at,
         public readonly array $order_items,
-        public readonly DateTimeImmutable $order_updated_at,
-        public readonly string $notes,
+        public readonly ?DateTimeImmutable $order_updated_at = null,
+        public readonly ?string $notes = null,
         public readonly ?array $tags = null
     ) {
 
@@ -50,8 +50,8 @@ class OrderDetails implements ModelInterface
             status: Status::fromData($data['status']),
             order_created_at: DateUtils::iso8601ToDateTime($data['order_created_at']),
             order_items: $order_items,
-            order_updated_at: DateUtils::iso8601ToDateTime($data['order_updated_at']),
-            notes: (string) $data['notes'],
+            order_updated_at: isset($data['order_updated_at']) ? DateUtils::iso8601ToDateTime($data['order_updated_at']) : null,
+            notes: isset($data['notes']) ? (string) $data['notes'] : null,
             tags: isset($data['tags']) ? $data['tags'] : null
         );
     }
@@ -62,12 +62,12 @@ class OrderDetails implements ModelInterface
             'integration' => $this->integration,
             'status' => $this->status,
             'order_created_at' => DateUtils::dateTimeToIso8601($this->order_created_at),
-            'order_items' => $this->order_items,
-            'order_updated_at' => DateUtils::dateTimeToIso8601($this->order_updated_at),
-            'notes' => $this->notes
+            'order_items' => $this->order_items
         ];
 
+        JsonUtils::addIfNotNull($json, 'order_updated_at', DateUtils::dateTimeToIso8601($this->order_updated_at));
         JsonUtils::addIfNotNull($json, 'tags', $this->tags);
+        JsonUtils::addIfNotNull($json, 'notes', $this->notes);
 
         return $json;
     }
