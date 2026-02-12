@@ -65,7 +65,10 @@ class OrderDetails implements ModelInterface
             'order_items' => $this->order_items
         ];
 
-        JsonUtils::addIfNotNull($json, 'order_updated_at', DateUtils::dateTimeToIso8601($this->order_updated_at));
+        if (isset($this->order_updated_at)) {
+            $json['order_updated_at'] = DateUtils::dateTimeToIso8601($this->order_updated_at);
+        }
+
         JsonUtils::addIfNotNull($json, 'tags', $this->tags);
         JsonUtils::addIfNotNull($json, 'notes', $this->notes);
 
