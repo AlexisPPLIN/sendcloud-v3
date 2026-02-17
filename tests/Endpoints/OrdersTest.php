@@ -525,7 +525,7 @@ class OrdersTest extends TestCase
             ]
         }
         JSON;
-        $endpoint = $this->getEndpoint($json, 200);
+        $endpoint = $this->getEndpoint($json, 201);
 
         // -- Act
 
@@ -561,7 +561,7 @@ class OrdersTest extends TestCase
         // -- Arrange
 
         $order_id = 1;
-        $endpoint = $this->getEndpoint('', 200);
+        $endpoint = $this->getEndpoint('', 204);
 
         // -- Act & Assert
 
