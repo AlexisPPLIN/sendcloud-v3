@@ -34,7 +34,7 @@ class SendcloudRequestException extends Exception
         $code = $code ?? SendcloudRequestException::CODE_UNKNOWN;
 
         if (isset($sendcloudCode)) {
-            $message .= " [$sendcloudCode]";
+            $message .= sprintf(' [%s]', $sendcloudCode);
         }
 
         if (isset($sendcloudSource)) {
