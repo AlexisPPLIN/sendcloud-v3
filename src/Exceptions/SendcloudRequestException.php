@@ -33,17 +33,27 @@ class SendcloudRequestException extends Exception
         $message = $message ?? '';
         $code = $code ?? SendcloudRequestException::CODE_UNKNOWN;
 
+        if (isset($sendcloudCode)) {
+            $message .= sprintf(' [%s]', $sendcloudCode);
+        }
+
+        if (isset($sendcloudSource)) {
+            $message .= " (at " . json_encode($sendcloudSource) . ")";
+        }
+
         parent::__construct($message, $code, $previous);
     }
 
     /**
      * Checks response for errors code and throws exception if needed
+     * 
+     * @param $expected_status_code Expected HTTP status code in response
      *
      * @throws SendcloudRequestException
      */
-    public static function fromResponse(ResponseInterface $response) : void
+    public static function fromResponse(ResponseInterface $response, int $expected_status_code = 200) : void
     {
-        if ($response->getStatusCode() === 200) {
+        if ($response->getStatusCode() === $expected_status_code) {
             return;
         }
 

@@ -25,7 +25,7 @@ class Orders extends Client
         try {
             $response = $this->client->get('/orders/' . $id);
 
-            SendcloudRequestException::fromResponse($response);
+            SendcloudRequestException::fromResponse($response, 200);
 
             $body = $response->getBody()->getContents();
 
@@ -156,7 +156,7 @@ class Orders extends Client
             // Send request
 
             $response = $this->client->get($uri);
-            SendcloudRequestException::fromResponse($response);
+            SendcloudRequestException::fromResponse($response, 200);
 
             // Parse response
 
@@ -195,7 +195,7 @@ class Orders extends Client
             $body = json_encode($order);
             $response = $this->client->patch('/orders/' . $order->id, [], $body);
 
-            SendcloudRequestException::fromResponse($response);
+            SendcloudRequestException::fromResponse($response, 200);
 
             $body = $response->getBody()->getContents();
             $json = json_decode($body, true);
@@ -224,7 +224,7 @@ class Orders extends Client
             $body = json_encode($orders);
             $response = $this->client->post('/orders', [], $body);
 
-            SendcloudRequestException::fromResponse($response);
+            SendcloudRequestException::fromResponse($response, 201);
 
             $body = $response->getBody()->getContents();
             $json = json_decode($body, true);
@@ -252,7 +252,7 @@ class Orders extends Client
         try {
             $response = $this->client->post('/orders/' . $id);
 
-            SendcloudRequestException::fromResponse($response);
+            SendcloudRequestException::fromResponse($response, 204);
         } catch (Throwable $throwable) {
             SendcloudRequestException::fromException($throwable);
         }

@@ -51,7 +51,9 @@ class ClientFactory
 
         // Headers
 
-        $headers = [];
+        $headers = [
+            'Content-Type' => 'application/json'
+        ];
         if (isset($partnerId)) {
             $headers['Sendcloud-Partner-Id'] = $partnerId;
         }
