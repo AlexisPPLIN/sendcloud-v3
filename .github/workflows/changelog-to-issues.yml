@@ -20,7 +20,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           feed: https://sendcloud.dev/api/v3/changelog/rss.xml
           prefix: "[Changelog]"
-          dry-run: true
-          max-age: 48h
+          dry-run: false
+          #max-age: 48h
           labels: sendcloud-changelog
           url-only: false
