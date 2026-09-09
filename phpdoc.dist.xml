@@ -8,7 +8,7 @@
     <paths>
         <output>docs/.build</output>
     </paths>
-    <version number="3.0">
+    <version number="latest">
         <api format="php">
             <source dsn=".">
                 <path>src</path>
@@ -19,4 +19,14 @@
             </ignore>
         </api>
     </version>
+    <template name="markdown" location="vendor/saggre/phpdocumentor-markdown/themes">
+        <!-- Print GitLab or GitHub compatible Markdown. Options: github|gitlab -->
+        <parameter name="markdownFlavour" value="github"/>
+        <!-- Add ".md" to links. Options: yes|no -->
+        <parameter name="urlFileExtensions" value="no"/>
+        <!-- Include H1 level title in Markdown. Options: yes|no -->
+        <parameter name="includeTitle" value="yes"/>
+        <!-- Include a footer with timestamp. Options: yes|no -->
+        <parameter name="includeFooter" value="no"/>
+    </template>
 </phpdocumentor>
