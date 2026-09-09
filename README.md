@@ -37,6 +37,7 @@ composer require symfony/http-client nyholm/psr7
 ## 🌐 Supported Endpoints
 
 - [Orders](https://sendcloud.dev/api/v3/orders)
+- [Address validation](https://sendcloud.dev/api/v3/address/validate)
 
 ## 💡 Quick start
 

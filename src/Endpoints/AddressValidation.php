@@ -7,7 +7,7 @@ namespace AlexisPPLIN\SendcloudV3\Endpoints;
 use AlexisPPLIN\SendcloudV3\Client;
 use AlexisPPLIN\SendcloudV3\Exceptions\SendcloudRequestException;
 use AlexisPPLIN\SendcloudV3\Models\AddressValidation\Address;
-use AlexisPPLIN\SendcloudV3\Models\AddressValidation\ValidationResult;
+use AlexisPPLIN\SendcloudV3\Models\AddressValidation\ValidationResponse;
 use Throwable;
 
 class AddressValidation extends Client
@@ -41,7 +41,7 @@ class AddressValidation extends Client
         Address $address,
         string $carrier_code,
         array $validation_methods = []
-    ) : ValidationResult {
+    ) : ValidationResponse {
         // Build body parameters
 
         $body = [
@@ -59,7 +59,7 @@ class AddressValidation extends Client
             $body = $response->getBody()->getContents();
             $json = json_decode($body, true);
 
-            $response = ValidationResult::fromData($json);
+            $response = ValidationResponse::fromData($json);
 
             return $response;
         } catch (Throwable $throwable) {
