@@ -1,8 +1,15 @@
 # Sendcloud v3 ☁️
 
-![Packagist Version](https://img.shields.io/packagist/v/alexispplin/sendcloud-v3?link=https%3A%2F%2Fpackagist.org%2Fpackages%2Falexispplin%2Fsendcloud-v3)
-![API v3 Changelog](https://img.shields.io/badge/API_v3_Changelog-2026--08--20-blue?style=flat)
-![License](https://img.shields.io/github/license/AlexisPPLIN/sendcloud-v3)
+<p align="center">
+    <a href="LICENSE"><img src="https://img.shields.io/github/license/AlexisPPLIN/sendcloud-v3"></a>
+    <a href="https://packagist.org/packages/alexispplin/sendcloud-v3"><img src="https://img.shields.io/packagist/v/alexispplin/sendcloud-v3?link=https%3A%2F%2Fpackagist.org%2Fpackages%2Falexispplin%2Fsendcloud-v3"></a>
+    <img src="https://img.shields.io/badge/API_v3_Changelog-2026--08--20-blue?style=flat">
+    <img src="https://github.com/AlexisPPLIN/sendcloud-v3/actions/workflows/tests.yml/badge.svg">
+<p>
+
+<p align="center">
+    <a href="docs/Home.md">📄 Documentation</a>
+</p>
 
 ## 📦 About
 
