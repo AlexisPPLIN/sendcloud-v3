@@ -201,7 +201,9 @@ class OrdersTest extends TestCase
                             transport_category: 'transport',
                             tunnel_restriction_code: 'tunnel',
                             weight_type: 'net',
-                        )
+                        ),
+                        dds_reference: '25FIYPEK0A7573',
+                        taric_code: '0803 90 10 00'
                     )
                 ],
                 notes: 'Call this number before delivery: 063 874 6473',
