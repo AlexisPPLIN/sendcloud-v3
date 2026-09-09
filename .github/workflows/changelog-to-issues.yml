@@ -6,7 +6,11 @@ on:
   # Run this Action every day at 7:37am UTC
   schedule:
     - cron: "37 7 * * *"
-    
+
+permissions:
+  contents: read
+  issues: write
+
 jobs:
   rss:
     runs-on: ubuntu-latest
