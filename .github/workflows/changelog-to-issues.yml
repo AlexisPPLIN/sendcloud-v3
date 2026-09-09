@@ -21,6 +21,6 @@ jobs:
           feed: https://sendcloud.dev/api/v3/changelog/rss.xml
           prefix: "[Changelog]"
           dry-run: false
-          #max-age: 48h
+          max-age: 8760h
           labels: sendcloud-changelog
           url-only: false
