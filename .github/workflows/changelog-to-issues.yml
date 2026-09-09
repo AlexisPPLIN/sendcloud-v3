@@ -1,11 +1,12 @@
 name: Monitor new Sendcloud API v3 changelog
 
 on:
+  workflow_dispatch:
   schedule:
     # Run this Action every day at 7:37am UTC
     - cron: "37 7 * * *"
     # Manually
-    - workflow_dispatch
+    
 
 jobs:
   gke-release:
