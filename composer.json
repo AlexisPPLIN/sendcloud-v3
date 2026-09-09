@@ -43,7 +43,9 @@
         "phpunit/php-code-coverage": "^11.0",
         "php-http/mock-client": "^1.6",
         "nyholm/psr7": "^1.8",
-        "symfony/http-client": "^7.4"
+        "symfony/http-client": "^7.4",
+        "saggre/phpdocumentor-markdown": "^1.0",
+        "phpdocumentor/shim": "^3.10"
     },
     "scripts": {
         "test": "vendor/bin/phpunit"
@@ -53,7 +55,8 @@
             "php": "8.2"
         },
         "allow-plugins": {
-            "php-http/discovery": false
+            "php-http/discovery": false,
+            "phpdocumentor/shim": true
         }
     }
 }
