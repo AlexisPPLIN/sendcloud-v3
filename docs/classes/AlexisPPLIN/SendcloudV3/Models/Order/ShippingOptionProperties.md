@@ -6,7 +6,7 @@ Contains the required properties to be sent when API client informs the shipping
 
 * Full name: `\AlexisPPLIN\SendcloudV3\Models\Order\ShippingOptionProperties`
 * This class implements:
-  [`\AlexisPPLIN\SendcloudV3\Models\ModelInterface`](../ModelInterface)
+  [`\AlexisPPLIN\SendcloudV3\Models\ModelInterface`](../ModelInterface.md)
 
 **See Also:**
 

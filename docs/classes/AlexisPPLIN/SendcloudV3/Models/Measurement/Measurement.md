@@ -6,7 +6,7 @@ This object provides essential information for accurate packing, shipping, and i
 
 * Full name: `\AlexisPPLIN\SendcloudV3\Models\Measurement\Measurement`
 * This class implements:
-  [`\AlexisPPLIN\SendcloudV3\Models\ModelInterface`](../ModelInterface)
+  [`\AlexisPPLIN\SendcloudV3\Models\ModelInterface`](../ModelInterface.md)
 
 **See Also:**
 

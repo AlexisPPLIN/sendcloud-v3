@@ -6,7 +6,7 @@ Node for general order information
 
 * Full name: `\AlexisPPLIN\SendcloudV3\Models\Order\OrderDetails`
 * This class implements:
-  [`\AlexisPPLIN\SendcloudV3\Models\ModelInterface`](../ModelInterface)
+  [`\AlexisPPLIN\SendcloudV3\Models\ModelInterface`](../ModelInterface.md)
 
 **See Also:**
 

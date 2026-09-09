@@ -6,7 +6,7 @@ Shipping information
 
 * Full name: `\AlexisPPLIN\SendcloudV3\Models\Order\ShippingDetails`
 * This class implements:
-  [`\AlexisPPLIN\SendcloudV3\Models\ModelInterface`](../ModelInterface)
+  [`\AlexisPPLIN\SendcloudV3\Models\ModelInterface`](../ModelInterface.md)
 
 **See Also:**
 

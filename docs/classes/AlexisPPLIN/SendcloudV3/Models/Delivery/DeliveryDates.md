@@ -6,7 +6,7 @@ Defined delivery dates
 
 * Full name: `\AlexisPPLIN\SendcloudV3\Models\Delivery\DeliveryDates`
 * This class implements:
-  [`\AlexisPPLIN\SendcloudV3\Models\ModelInterface`](../ModelInterface)
+  [`\AlexisPPLIN\SendcloudV3\Models\ModelInterface`](../ModelInterface.md)
 
 **See Also:**
 

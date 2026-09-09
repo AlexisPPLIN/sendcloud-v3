@@ -6,7 +6,7 @@ Identification numbers and codes related to sender, receiver and importer of rec
 
 * Full name: `\AlexisPPLIN\SendcloudV3\Models\Tax\TaxNumbers`
 * This class implements:
-  [`\AlexisPPLIN\SendcloudV3\Models\ModelInterface`](../ModelInterface)
+  [`\AlexisPPLIN\SendcloudV3\Models\ModelInterface`](../ModelInterface.md)
 
 **See Also:**
 

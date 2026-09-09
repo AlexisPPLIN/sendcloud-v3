@@ -70,7 +70,7 @@ public __construct(string $publicKey, string $secretKey, ?string $partnerId = nu
 
 **Throws:**
 
-- [`NotFoundException`](../../Http/Discovery/Exception/NotFoundException)
-- [`InvalidArgumentException`](../../InvalidArgumentException)
+- [`NotFoundException`](../../Http/Discovery/Exception/NotFoundException.md)
+- [`InvalidArgumentException`](../../InvalidArgumentException.md)
 
 ***

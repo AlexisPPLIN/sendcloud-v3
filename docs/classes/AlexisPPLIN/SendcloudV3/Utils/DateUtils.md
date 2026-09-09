@@ -31,7 +31,7 @@ public static iso8601ToDateTime(string $iso8601): \DateTimeImmutable
 
 **Throws:**
 
-- [`DateParsingException`](../Exceptions/DateParsingException)
+- [`DateParsingException`](../Exceptions/DateParsingException.md)
 
 ***
 
@@ -52,6 +52,6 @@ public static dateTimeToIso8601(\DateTimeImmutable $date): string
 
 **Throws:**
 
-- [`DateParsingException`](../Exceptions/DateParsingException)
+- [`DateParsingException`](../Exceptions/DateParsingException.md)
 
 ***

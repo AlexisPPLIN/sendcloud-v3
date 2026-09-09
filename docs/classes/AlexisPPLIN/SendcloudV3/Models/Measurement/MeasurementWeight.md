@@ -6,7 +6,7 @@ Weight in the specified unit
 
 * Full name: `\AlexisPPLIN\SendcloudV3\Models\Measurement\MeasurementWeight`
 * This class implements:
-  [`\AlexisPPLIN\SendcloudV3\Models\ModelInterface`](../ModelInterface)
+  [`\AlexisPPLIN\SendcloudV3\Models\ModelInterface`](../ModelInterface.md)
 
 **See Also:**
 

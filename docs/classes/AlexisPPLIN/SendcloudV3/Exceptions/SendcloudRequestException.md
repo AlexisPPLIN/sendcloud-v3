@@ -5,7 +5,7 @@ Thrown when Sendcloud API return an error
 ***
 
 * Full name: `\AlexisPPLIN\SendcloudV3\Exceptions\SendcloudRequestException`
-* Parent class: [`Exception`](../../../Exception)
+* Parent class: [`Exception`](../../../Exception.md)
 
 ## Constants
 

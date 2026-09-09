@@ -8,7 +8,7 @@ You can use a shipping_option_code. This is a unique identifier that displays wh
 
 * Full name: `\AlexisPPLIN\SendcloudV3\Models\Order\ShipWith`
 * This class implements:
-  [`\AlexisPPLIN\SendcloudV3\Models\ModelInterface`](../ModelInterface)
+  [`\AlexisPPLIN\SendcloudV3\Models\ModelInterface`](../ModelInterface.md)
 
 **See Also:**
 

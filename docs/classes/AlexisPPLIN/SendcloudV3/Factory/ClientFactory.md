@@ -26,7 +26,7 @@ public static create(string $base_uri, string $user, string $pass, ?string $part
 
 **Throws:**
 
-- [`NotFoundException`](../../../Http/Discovery/Exception/NotFoundException)
-- [`InvalidArgumentException`](../../../InvalidArgumentException)
+- [`NotFoundException`](../../../Http/Discovery/Exception/NotFoundException.md)
+- [`InvalidArgumentException`](../../../InvalidArgumentException.md)
 
 ***

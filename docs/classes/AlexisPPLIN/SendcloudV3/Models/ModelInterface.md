@@ -23,8 +23,8 @@ public static fromData(array $data): self
 
 **Throws:**
 
-- [`ModelFromDataException`](../Exceptions/ModelFromDataException)
-- [`DateParsingException`](../Exceptions/DateParsingException)
+- [`ModelFromDataException`](../Exceptions/ModelFromDataException.md)
+- [`DateParsingException`](../Exceptions/DateParsingException.md)
 
 ***
 
@@ -36,6 +36,6 @@ public jsonSerialize(): array
 
 **Throws:**
 
-- [`DateParsingException`](../Exceptions/DateParsingException)
+- [`DateParsingException`](../Exceptions/DateParsingException.md)
 
 ***

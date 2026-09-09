@@ -4,7 +4,7 @@
 
 * Full name: `\AlexisPPLIN\SendcloudV3\Models\Tax\TaxNumber`
 * This class implements:
-  [`\AlexisPPLIN\SendcloudV3\Models\ModelInterface`](../ModelInterface)
+  [`\AlexisPPLIN\SendcloudV3\Models\ModelInterface`](../ModelInterface.md)
 
 ## Properties
 

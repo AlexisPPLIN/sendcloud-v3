@@ -5,7 +5,7 @@ The Orders API allows you to manage orders within Sendcloud.
 ***
 
 * Full name: `\AlexisPPLIN\SendcloudV3\Endpoints\Orders`
-* Parent class: [`\AlexisPPLIN\SendcloudV3\Client`](../Client)
+* Parent class: [`\AlexisPPLIN\SendcloudV3\Client`](../Client.md)
 
 **See Also:**
 
@@ -30,7 +30,7 @@ public getOrder(int $id): \AlexisPPLIN\SendcloudV3\Models\Order\Order
 
 **Throws:**
 
-- [`SendcloudRequestException`](../Exceptions/SendcloudRequestException)
+- [`SendcloudRequestException`](../Exceptions/SendcloudRequestException.md)
 
 **See Also:**
 
@@ -88,7 +88,7 @@ Example:
 
 **Throws:**
 
-- [`SendcloudRequestException`](../Exceptions/SendcloudRequestException)
+- [`SendcloudRequestException`](../Exceptions/SendcloudRequestException.md)
 
 **See Also:**
 
@@ -117,8 +117,8 @@ Sendcloud order ID
 
 **Throws:**
 
-- [`SendcloudRequestException`](../Exceptions/SendcloudRequestException)
-- [`InvalidArgumentException`](../../../InvalidArgumentException)
+- [`SendcloudRequestException`](../Exceptions/SendcloudRequestException.md)
+- [`InvalidArgumentException`](../../../InvalidArgumentException.md)
 
 **See Also:**
 
@@ -147,7 +147,7 @@ Sendcloud orders IDs
 
 **Throws:**
 
-- [`SendcloudRequestException`](../Exceptions/SendcloudRequestException)
+- [`SendcloudRequestException`](../Exceptions/SendcloudRequestException.md)
 
 **See Also:**
 
@@ -172,7 +172,7 @@ public deleteOrder(int $id): void
 
 **Throws:**
 
-- [`SendcloudRequestException`](../Exceptions/SendcloudRequestException)
+- [`SendcloudRequestException`](../Exceptions/SendcloudRequestException.md)
 
 **See Also:**
 
@@ -200,7 +200,7 @@ public __construct(string $publicKey, string $secretKey, ?string $partnerId = nu
 
 **Throws:**
 
-- [`NotFoundException`](../../../Http/Discovery/Exception/NotFoundException)
-- [`InvalidArgumentException`](../../../InvalidArgumentException)
+- [`NotFoundException`](../../../Http/Discovery/Exception/NotFoundException.md)
+- [`InvalidArgumentException`](../../../InvalidArgumentException.md)
 
 ***

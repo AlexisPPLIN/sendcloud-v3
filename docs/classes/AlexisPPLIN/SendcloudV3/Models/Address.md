@@ -6,7 +6,7 @@ Sendcloud Address object
 
 * Full name: `\AlexisPPLIN\SendcloudV3\Models\Address`
 * This class implements:
-  [`\AlexisPPLIN\SendcloudV3\Models\ModelInterface`](./ModelInterface)
+  [`\AlexisPPLIN\SendcloudV3\Models\ModelInterface`](./ModelInterface.md)
 
 **See Also:**
 

@@ -6,7 +6,7 @@ Customs information required for international shipments.
 
 * Full name: `\AlexisPPLIN\SendcloudV3\Models\Order\CustomsDetails`
 * This class implements:
-  [`\AlexisPPLIN\SendcloudV3\Models\ModelInterface`](../ModelInterface)
+  [`\AlexisPPLIN\SendcloudV3\Models\ModelInterface`](../ModelInterface.md)
 
 **See Also:**
 
