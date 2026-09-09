@@ -1,11 +1,12 @@
 name: Monitor new Sendcloud API v3 changelog
 
 on:
+  # Manually
   workflow_dispatch:
+  # Run this Action every day at 7:37am UTC
   schedule:
-    # Run this Action every day at 7:37am UTC
     - cron: "37 7 * * *"
-    # Manually
+    
     
 
 jobs:
