@@ -1,0 +1,22 @@
+name: Monitor new Sendcloud API v3 changelog
+
+on:
+  schedule:
+    # Run this Action every day at 7:37am UTC
+    - cron: "37 7 * * *"
+    # Manually
+    - workflow_dispatch
+
+jobs:
+  gke-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: git-for-windows/rss-to-issues@v0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          feed: https://sendcloud.dev/api/v3/changelog/rss.xml
+          prefix: "[Changelog]"
+          dry-run: true
+          max-age: 48h
+          labels: sendcloud-changelog
+          url-only: false
