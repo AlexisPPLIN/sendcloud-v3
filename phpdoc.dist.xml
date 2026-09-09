@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdocumentor
+        configVersion="3"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="https://www.phpdoc.org"
+>
+    <title>phpDocumentor</title>
+    <paths>
+        <output>docs</output>
+    </paths>
+    <version number="latest">
+        <api format="php">
+            <source dsn=".">
+                <path>src</path>
+            </source>
+            <ignore hidden="true" symlinks="true">
+                <path>tests/**/*</path>
+                <path>vendor/**/*</path>
+            </ignore>
+        </api>
+    </version>
+    <template name="markdown" location="vendor/saggre/phpdocumentor-markdown/themes">
+        <!-- Print GitLab or GitHub compatible Markdown. Options: github|gitlab -->
+        <parameter name="markdownFlavour" value="github"/>
+        <!-- Add ".md" to links. Options: yes|no -->
+        <parameter name="urlFileExtensions" value="yes"/>
+        <!-- Include H1 level title in Markdown. Options: yes|no -->
+        <parameter name="includeTitle" value="yes"/>
+        <!-- Include a footer with timestamp. Options: yes|no -->
+        <parameter name="includeFooter" value="no"/>
+    </template>
+</phpdocumentor>

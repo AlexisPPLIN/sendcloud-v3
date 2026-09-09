@@ -8,6 +8,9 @@ use AlexisPPLIN\SendcloudV3\Exceptions\DateParsingException;
 use DateTimeImmutable;
 use ValueError;
 
+/**
+ * Utility methods for date handling
+ */
 class DateUtils
 {
     public const DATE_FORMAT = "Y-m-d\TH:i:s.uP";
