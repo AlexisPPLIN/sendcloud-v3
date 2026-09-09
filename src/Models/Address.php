@@ -23,7 +23,7 @@ class Address implements ModelInterface
      * @param $house_number House number of the address
      * @param $address_line_2 Additional address information, e.g. 2nd level
      * @param $po_box Code required in case of PO Box or post locker delivery
-     * @param $state_province_code The character state code of the customer represented as ISO 3166-2 code
+     * @param $state_province_code The character state code of the customer represented as ISO 3166-2 code. This field is required for certain countries. See {@link https://sendcloud.dev/docs/shipments/international-shipping#required-fields-for-international-shipments international shipping} for details.
      * @param $email Email address of the person associated with the address
      * @param $phone_number Phone number of the person associated with the address
      */
