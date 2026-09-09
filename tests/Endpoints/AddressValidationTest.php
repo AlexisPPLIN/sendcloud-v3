@@ -4,20 +4,38 @@ declare(strict_types=1);
 
 namespace Test\AlexisPPLIN\SendcloudV3;
 
+use InvalidArgumentException;
+
+use Http\Mock\Client;
+
+use Nyholm\Psr7\Response;
+
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
+use PHPUnit\Framework\TestCase;
+
 use AlexisPPLIN\SendcloudV3\Endpoints\AddressValidation;
+use AlexisPPLIN\SendcloudV3\Exceptions\SendcloudRequestException;
+use AlexisPPLIN\SendcloudV3\Factory\ClientFactory;
 use AlexisPPLIN\SendcloudV3\Models\AddressValidation\Address;
 use AlexisPPLIN\SendcloudV3\Models\AddressValidation\Analysis;
 use AlexisPPLIN\SendcloudV3\Models\AddressValidation\AnalystsValidationResult;
 use AlexisPPLIN\SendcloudV3\Models\AddressValidation\ValidationResponse;
 use AlexisPPLIN\SendcloudV3\Models\AddressValidation\ValidationResult;
-
-use Http\Mock\Client;
-use InvalidArgumentException;
-use Nyholm\Psr7\Response;
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\TestCase;
+use AlexisPPLIN\SendcloudV3\Utils\DateUtils;
+use AlexisPPLIN\SendcloudV3\Utils\JsonUtils;
 
 #[CoversClass(AddressValidation::class)]
+#[CoversClass(Address::class)]
+#[CoversClass(Analysis::class)]
+#[CoversClass(AnalystsValidationResult::class)]
+#[CoversClass(ValidationResponse::class)]
+#[CoversClass(ValidationResult::class)]
+#[UsesClass(Client::class)]
+#[UsesClass(ClientFactory::class)]
+#[UsesClass(JsonUtils::class)]
+#[UsesClass(DateUtils::class)]
+#[UsesClass(SendcloudRequestException::class)]
 class AddressValidationTest extends TestCase
 {
     private Address $address;
@@ -133,5 +151,40 @@ class AddressValidationTest extends TestCase
 
         $this->assertInstanceOf(ValidationResponse::class, $actual);
         $this->assertEquals($expected, $actual);
+    }
+
+    public function testValidateException() : void
+    {
+        // -- Arrange
+
+        $carrier_code = 'trunkrs';
+        $validation_methods = ['here'];
+        $json = file_get_contents(__DIR__ . '/errors/400.json');
+        $endpoint = $this->getEndpoint($json, 400);
+
+        // -- Act & Assert
+
+        $this->expectException(SendcloudRequestException::class);
+
+        $endpoint->validate(
+            $this->address,
+            $carrier_code,
+            $validation_methods
+        );
+    }
+
+    public function testValidationResponseJson() : void
+    {
+        // -- Arrange
+
+        $json = $this->getJson();
+
+        // -- Act
+
+        $actual = json_encode($this->generateValidationResponse());
+
+        // -- Assert
+
+        $this->assertJsonStringEqualsJsonString($json, $actual);
     }
 }

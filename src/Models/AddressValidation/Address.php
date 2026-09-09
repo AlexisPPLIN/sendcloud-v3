@@ -63,7 +63,7 @@ class Address implements ModelInterface
             'country_code' => $this->country_code,
         ];
 
-        JsonUtils::addIfNotNull($json, 'company_name', $this->po_box);
+        JsonUtils::addIfNotNull($json, 'po_box', $this->po_box);
 
         return $json;
     }
