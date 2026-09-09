@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace AlexisPPLIN\SendcloudV3\Models\AddressValidation;
 
 use AlexisPPLIN\SendcloudV3\Models\ModelInterface;
-use AlexisPPLIN\SendcloudV3\Utils\JsonUtils;
 
 /**
  * The result of the validation process.

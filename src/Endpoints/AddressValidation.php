@@ -33,7 +33,7 @@ class AddressValidation extends Client
      *
      * @param $address Address Washer Request object model
      * @param $carrier_code The code of the carrier to be used for the address validation. Only carriers available to your account can be used.
-     * @param array<value-of<self::VALIDATIONS_METHOD>> An array of optional address validation methods to be applied. The default Sendcloud validation will always be applied.
+     * @param array<value-of<self::VALIDATIONS_METHOD>> $validation_methods An array of optional address validation methods to be applied. The default Sendcloud validation will always be applied.
      *
      * @throws SendcloudRequestException
      */

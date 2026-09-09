@@ -17,7 +17,7 @@ class ValidationResult implements ModelInterface
     /**
      * @param $recommended Indicates if the address is recommended after validation.
      * @param $address The validated address details. In case null is returned, the address is not valid and the details are not available (f.e.the address validator is not available).
-     * @param ?value-of<AddressValidation::VALIDATIONS_METHOD> $validation_method The method used for address validation, null stands for the Sendcloud address carrier optimizer validation method.
+     * @param value-of<\AlexisPPLIN\SendcloudV3\Endpoints\AddressValidation::VALIDATIONS_METHOD>|null $validation_method The method used for address validation, null stands for the Sendcloud address carrier optimizer validation method.
      * @param $analysis Analysis details of the address validation process. In case null is returned no analysis details are available.
      */
     public function __construct(
