@@ -10,6 +10,9 @@ use Psr\Http\Message\ResponseInterface;
 use RuntimeException;
 use Throwable;
 
+/**
+ * Thrown when Sendcloud API return an error
+ */
 class SendcloudRequestException extends Exception
 {
     public const CODE_UNKNOWN = 0;

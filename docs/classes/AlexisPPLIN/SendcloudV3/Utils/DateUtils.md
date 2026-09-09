@@ -1,5 +1,7 @@
 # DateUtils
 
+Utility methods for date handling
+
 ***
 
 * Full name: `\AlexisPPLIN\SendcloudV3\Utils\DateUtils`

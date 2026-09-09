@@ -8,27 +8,27 @@ This is an automatically generated documentation for **phpDocumentor**.
 
 #### Classes
 
-| Class                                                | Description |
-|------------------------------------------------------|-------------|
-| [`Client`](./classes/AlexisPPLIN/SendcloudV3/Client) |             |
+| Class                                                | Description                           |
+|------------------------------------------------------|---------------------------------------|
+| [`Client`](./classes/AlexisPPLIN/SendcloudV3/Client) | Generic HTTP client for all endpoints |
 
 ### \AlexisPPLIN\SendcloudV3\Endpoints
 
 #### Classes
 
-| Class                                                          | Description |
-|----------------------------------------------------------------|-------------|
-| [`Orders`](./classes/AlexisPPLIN/SendcloudV3/Endpoints/Orders) |             |
+| Class                                                          | Description                                                  |
+|----------------------------------------------------------------|--------------------------------------------------------------|
+| [`Orders`](./classes/AlexisPPLIN/SendcloudV3/Endpoints/Orders) | The Orders API allows you to manage orders within Sendcloud. |
 
 ### \AlexisPPLIN\SendcloudV3\Exceptions
 
 #### Classes
 
-| Class                                                                                                 | Description |
-|-------------------------------------------------------------------------------------------------------|-------------|
-| [`DateParsingException`](./classes/AlexisPPLIN/SendcloudV3/Exceptions/DateParsingException)           |             |
-| [`ModelFromDataException`](./classes/AlexisPPLIN/SendcloudV3/Exceptions/ModelFromDataException)       |             |
-| [`SendcloudRequestException`](./classes/AlexisPPLIN/SendcloudV3/Exceptions/SendcloudRequestException) |             |
+| Class                                                                                                 | Description                                    |
+|-------------------------------------------------------------------------------------------------------|------------------------------------------------|
+| [`DateParsingException`](./classes/AlexisPPLIN/SendcloudV3/Exceptions/DateParsingException)           | Thrown when date parsing fails                 |
+| [`ModelFromDataException`](./classes/AlexisPPLIN/SendcloudV3/Exceptions/ModelFromDataException)       | Thrown when the ::fromData() Model method fail |
+| [`SendcloudRequestException`](./classes/AlexisPPLIN/SendcloudV3/Exceptions/SendcloudRequestException) | Thrown when Sendcloud API return an error      |
 
 ### \AlexisPPLIN\SendcloudV3\Factory
 
@@ -119,7 +119,7 @@ This is an automatically generated documentation for **phpDocumentor**.
 
 #### Classes
 
-| Class                                                            | Description |
-|------------------------------------------------------------------|-------------|
-| [`DateUtils`](./classes/AlexisPPLIN/SendcloudV3/Utils/DateUtils) |             |
-| [`JsonUtils`](./classes/AlexisPPLIN/SendcloudV3/Utils/JsonUtils) |             |
+| Class                                                            | Description                       |
+|------------------------------------------------------------------|-----------------------------------|
+| [`DateUtils`](./classes/AlexisPPLIN/SendcloudV3/Utils/DateUtils) | Utility methods for date handling |
+| [`JsonUtils`](./classes/AlexisPPLIN/SendcloudV3/Utils/JsonUtils) | Utility methods for json handling |

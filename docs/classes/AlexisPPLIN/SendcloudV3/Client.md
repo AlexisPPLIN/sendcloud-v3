@@ -1,8 +1,14 @@
 # Client
 
+Generic HTTP client for all endpoints
+
 ***
 
 * Full name: `\AlexisPPLIN\SendcloudV3\Client`
+
+**See Also:**
+
+* https://sendcloud.dev/docs/getting-started/how-to-create-your-api-keys - Generate your public and secret key
 
 ## Constants
 

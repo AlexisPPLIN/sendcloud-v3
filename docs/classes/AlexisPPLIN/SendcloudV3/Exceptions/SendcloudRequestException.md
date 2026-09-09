@@ -1,5 +1,7 @@
 # SendcloudRequestException
 
+Thrown when Sendcloud API return an error
+
 ***
 
 * Full name: `\AlexisPPLIN\SendcloudV3\Exceptions\SendcloudRequestException`

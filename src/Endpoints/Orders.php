@@ -10,6 +10,11 @@ use AlexisPPLIN\SendcloudV3\Models\Order\Order;
 use InvalidArgumentException;
 use Throwable;
 
+/**
+ * The Orders API allows you to manage orders within Sendcloud.
+ *
+ * @link https://sendcloud.dev/api/v3/orders/index Sendcloud documentation
+ */
 class Orders extends Client
 {
     /**

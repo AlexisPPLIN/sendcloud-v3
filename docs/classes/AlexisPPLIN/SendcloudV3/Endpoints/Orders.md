@@ -1,9 +1,15 @@
 # Orders
 
+The Orders API allows you to manage orders within Sendcloud.
+
 ***
 
 * Full name: `\AlexisPPLIN\SendcloudV3\Endpoints\Orders`
 * Parent class: [`\AlexisPPLIN\SendcloudV3\Client`](../Client)
+
+**See Also:**
+
+* https://sendcloud.dev/api/v3/orders/index - Sendcloud documentation
 
 ## Methods
 

@@ -11,6 +11,11 @@ use Http\Client\HttpClient;
 use Http\Discovery\Psr17FactoryDiscovery;
 use InvalidArgumentException;
 
+/**
+ * Generic HTTP client for all endpoints
+ *
+ * @see https://sendcloud.dev/docs/getting-started/how-to-create-your-api-keys Generate your public and secret key
+ */
 class Client
 {
     protected const API_BASE_URL = 'https://panel.sendcloud.sc/api/v3/';
