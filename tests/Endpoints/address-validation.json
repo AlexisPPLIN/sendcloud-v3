@@ -1,0 +1,33 @@
+{
+  "input_address_is_valid": true,
+  "results": [
+    {
+      "address": {
+        "address_line_1": "Stadhuisplein",
+        "house_number": "50",
+        "address_line_2": "Apartment 17B",
+        "postal_code": "1013 AB",
+        "city": "Eindhoven",
+        "po_box": "<string>",
+        "state_province_code": "IT-RM",
+        "country_code": "NL"
+      },
+      "validation_method": "here",
+      "recommended": true,
+      "analysis": {
+        "validation_result": {
+          "is_valid": true,
+          "reasons": [
+            "ADDRESS_TOO_LONG"
+          ]
+        },
+        "changed_attributes": [
+          "<string>"
+        ],
+        "invalid_attributes": [
+          "<string>"
+        ]
+      }
+    }
+  ]
+}

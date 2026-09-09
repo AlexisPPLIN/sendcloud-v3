@@ -16,9 +16,10 @@ This is an automatically generated documentation for **phpDocumentor**.
 
 #### Classes
 
-| Class                                                             | Description                                                  |
-|-------------------------------------------------------------------|--------------------------------------------------------------|
-| [`Orders`](./classes/AlexisPPLIN/SendcloudV3/Endpoints/Orders.md) | The Orders API allows you to manage orders within Sendcloud. |
+| Class                                                                                   | Description                                                  |
+|-----------------------------------------------------------------------------------------|--------------------------------------------------------------|
+| [`AddressValidation`](./classes/AlexisPPLIN/SendcloudV3/Endpoints/AddressValidation.md) | Generic HTTP client for all endpoints                        |
+| [`Orders`](./classes/AlexisPPLIN/SendcloudV3/Endpoints/Orders.md)                       | The Orders API allows you to manage orders within Sendcloud. |
 
 ### \AlexisPPLIN\SendcloudV3\Exceptions
 
@@ -55,6 +56,18 @@ This is an automatically generated documentation for **phpDocumentor**.
 | Interface                                                                      | Description |
 |--------------------------------------------------------------------------------|-------------|
 | [`ModelInterface`](./classes/AlexisPPLIN/SendcloudV3/Models/ModelInterface.md) |             |
+
+### \AlexisPPLIN\SendcloudV3\Models\AddressValidation
+
+#### Classes
+
+| Class                                                                                                                | Description                                         |
+|----------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------|
+| [`Address`](./classes/AlexisPPLIN/SendcloudV3/Models/AddressValidation/Address.md)                                   | Address Washer Request object model                 |
+| [`Analysis`](./classes/AlexisPPLIN/SendcloudV3/Models/AddressValidation/Analysis.md)                                 | Analysis details of the address validation process. |
+| [`AnalystsValidationResult`](./classes/AlexisPPLIN/SendcloudV3/Models/AddressValidation/AnalystsValidationResult.md) | The result of the validation process.               |
+| [`ValidationResponse`](./classes/AlexisPPLIN/SendcloudV3/Models/AddressValidation/ValidationResponse.md)             | Address validation successful                       |
+| [`ValidationResult`](./classes/AlexisPPLIN/SendcloudV3/Models/AddressValidation/ValidationResult.md)                 | Address validation successful                       |
 
 ### \AlexisPPLIN\SendcloudV3\Models\Customer
 
