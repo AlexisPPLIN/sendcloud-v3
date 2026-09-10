@@ -16,10 +16,10 @@ This is an automatically generated documentation for **phpDocumentor**.
 
 #### Classes
 
-| Class                                                                                   | Description                                                  |
-|-----------------------------------------------------------------------------------------|--------------------------------------------------------------|
-| [`AddressValidation`](./classes/AlexisPPLIN/SendcloudV3/Endpoints/AddressValidation.md) | Generic HTTP client for all endpoints                        |
-| [`Orders`](./classes/AlexisPPLIN/SendcloudV3/Endpoints/Orders.md)                       | The Orders API allows you to manage orders within Sendcloud. |
+| Class                                                                                   | Description                                                                                   |
+|-----------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| [`AddressValidation`](./classes/AlexisPPLIN/SendcloudV3/Endpoints/AddressValidation.md) | This address validation endpoint allows you to validate shipping addresses before using them. |
+| [`Orders`](./classes/AlexisPPLIN/SendcloudV3/Endpoints/Orders.md)                       | The Orders API allows you to manage orders within Sendcloud.                                  |
 
 ### \AlexisPPLIN\SendcloudV3\Exceptions
 

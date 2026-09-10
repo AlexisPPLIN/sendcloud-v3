@@ -10,6 +10,11 @@ use AlexisPPLIN\SendcloudV3\Models\AddressValidation\Address;
 use AlexisPPLIN\SendcloudV3\Models\AddressValidation\ValidationResponse;
 use Throwable;
 
+/**
+ * This address validation endpoint allows you to validate shipping addresses before using them.
+ *
+ * @link https://sendcloud.dev/api/v3/address/validate Sendcloud documentation
+ */
 class AddressValidation extends Client
 {
     public const VALIDATIONS_METHOD = [

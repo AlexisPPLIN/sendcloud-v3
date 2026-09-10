@@ -1,11 +1,15 @@
 # AddressValidation
 
-Generic HTTP client for all endpoints
+This address validation endpoint allows you to validate shipping addresses before using them.
 
 ***
 
 * Full name: `\AlexisPPLIN\SendcloudV3\Endpoints\AddressValidation`
 * Parent class: [`\AlexisPPLIN\SendcloudV3\Client`](../Client.md)
+
+**See Also:**
+
+* https://sendcloud.dev/api/v3/address/validate - Sendcloud documentation
 
 ## Constants
 
