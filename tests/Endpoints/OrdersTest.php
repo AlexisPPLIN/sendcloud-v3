@@ -22,6 +22,7 @@ use AlexisPPLIN\SendcloudV3\Models\Order\Order;
 use AlexisPPLIN\SendcloudV3\Models\Order\OrderDetails;
 use AlexisPPLIN\SendcloudV3\Models\Order\OrderDetailsIntegration;
 use AlexisPPLIN\SendcloudV3\Models\Order\OrderItems;
+use AlexisPPLIN\SendcloudV3\Models\Order\Cpsc;
 use AlexisPPLIN\SendcloudV3\Models\Order\ShippingDetails;
 use AlexisPPLIN\SendcloudV3\Models\Order\ShippingOptionProperties;
 use AlexisPPLIN\SendcloudV3\Models\Order\ShipWith;
@@ -51,6 +52,7 @@ use Http\Mock\Client;
 #[CoversClass(OrderDetails::class)]
 #[CoversClass(OrderDetailsIntegration::class)]
 #[CoversClass(OrderItems::class)]
+#[CoversClass(Cpsc::class)]
 #[CoversClass(Price::class)]
 #[CoversClass(Status::class)]
 #[CoversClass(PaymentDetails::class)]
@@ -203,7 +205,12 @@ class OrdersTest extends TestCase
                             weight_type: 'net',
                         ),
                         dds_reference: '25FIYPEK0A7573',
-                        taric_code: '0803 90 10 00'
+                        taric_code: '0803 90 10 00',
+                        cpsc: new Cpsc(
+                            product_id: '12345',
+                            certifier_id: '67890',
+                            version_id: '1'
+                        )
                     )
                 ],
                 notes: 'Call this number before delivery: 063 874 6473',
