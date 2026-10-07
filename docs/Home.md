@@ -102,6 +102,7 @@ This is an automatically generated documentation for **phpDocumentor**.
 
 | Class                                                                                                    | Description                                                                                                    |
 |----------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
+| [`Cpsc`](./classes/AlexisPPLIN/SendcloudV3/Models/Order/Cpsc.md)                                         |                                                                                                                |
 | [`CustomsDetails`](./classes/AlexisPPLIN/SendcloudV3/Models/Order/CustomsDetails.md)                     | Customs information required for international shipments.                                                      |
 | [`Order`](./classes/AlexisPPLIN/SendcloudV3/Models/Order/Order.md)                                       |                                                                                                                |
 | [`OrderDetails`](./classes/AlexisPPLIN/SendcloudV3/Models/Order/OrderDetails.md)                         | Node for general order information                                                                             |

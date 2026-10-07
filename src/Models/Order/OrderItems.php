@@ -9,6 +9,7 @@ use AlexisPPLIN\SendcloudV3\Models\Delivery\DeliveryDates;
 use AlexisPPLIN\SendcloudV3\Models\Measurement\Measurement;
 use AlexisPPLIN\SendcloudV3\Models\ModelInterface;
 use AlexisPPLIN\SendcloudV3\Models\Price;
+use AlexisPPLIN\SendcloudV3\Models\Order\Cpsc;
 use AlexisPPLIN\SendcloudV3\Utils\JsonUtils;
 
 /**
@@ -42,6 +43,7 @@ class OrderItems implements ModelInterface
      * @param $dangerous_goods Hazardous materials information for items.
      * @param $dds_reference The Due Diligence Statement (DDS) reference number assigned under the EU Deforestation Regulation (EUDR). Each DDS submitted to the EU information system is assigned a verification number.
      * @param $taric_code The TARIC (Integrated Tariff of the European Communities) code used to classify traded goods for customs purposes within the EU.
+     * @param $cpsc CPSC (Consumer Product Safety Commission) certification details required for certain shipments to the United States. Omit this field entirely if not applicable.
      */
     public function __construct(
         public readonly string $name,
@@ -65,7 +67,8 @@ class OrderItems implements ModelInterface
         public readonly ?string $intended_use = null,
         public readonly ?DangerousGoods $dangerous_goods = null,
         public readonly ?string $dds_reference = null,
-        public readonly ?string $taric_code = null
+        public readonly ?string $taric_code = null,
+        public readonly ?Cpsc $cpsc = null
     ) {
 
     }
@@ -95,6 +98,7 @@ class OrderItems implements ModelInterface
             dangerous_goods:    isset($data['dangerous_goods'])     ? DangerousGoods::fromData($data['dangerous_goods'])       : null,
             dds_reference:      isset($data['dds_reference'])       ? (string) $data['dds_reference']                          : null,
             taric_code:         isset($data['taric_code'])          ? (string) $data['taric_code']                             : null,
+            cpsc:               isset($data['cpsc'])                ? Cpsc::fromData($data['cpsc'])                            : null,
         );
     }
 
@@ -125,6 +129,7 @@ class OrderItems implements ModelInterface
         JsonUtils::addIfNotNull($json, 'dangerous_goods', $this->dangerous_goods);
         JsonUtils::addIfNotNull($json, 'dds_reference', $this->dds_reference);
         JsonUtils::addIfNotNull($json, 'taric_code', $this->taric_code);
+        JsonUtils::addIfNotNull($json, 'cpsc', $this->cpsc);
 
         return $json;
     }
