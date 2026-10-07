@@ -188,12 +188,20 @@ public ?string $taric_code
 
 ***
 
+### cpsc
+
+```php
+public ?\AlexisPPLIN\SendcloudV3\Models\Order\Cpsc $cpsc
+```
+
+***
+
 ## Methods
 
 ### __construct
 
 ```php
-public __construct(mixed $name, mixed $quantity, mixed $total_price, mixed $item_id = null, mixed $product_id = null, mixed $variant_id = null, mixed $image_url = null, mixed $description = null, mixed $sku = null, mixed $hs_code = null, mixed $country_of_origin = null, array<string,string> $properties = null, mixed $unit_price = null, mixed $measurement = null, mixed $ean = null, mixed $delivery_dates = null, mixed $mid_code = null, mixed $material_content = null, mixed $intended_use = null, mixed $dangerous_goods = null, mixed $dds_reference = null, mixed $taric_code = null): mixed
+public __construct(mixed $name, mixed $quantity, mixed $total_price, mixed $item_id = null, mixed $product_id = null, mixed $variant_id = null, mixed $image_url = null, mixed $description = null, mixed $sku = null, mixed $hs_code = null, mixed $country_of_origin = null, array<string,string> $properties = null, mixed $unit_price = null, mixed $measurement = null, mixed $ean = null, mixed $delivery_dates = null, mixed $mid_code = null, mixed $material_content = null, mixed $intended_use = null, mixed $dangerous_goods = null, mixed $dds_reference = null, mixed $taric_code = null, mixed $cpsc = null): mixed
 ```
 
 **Parameters:**
@@ -225,6 +233,7 @@ public __construct(mixed $name, mixed $quantity, mixed $total_price, mixed $item
 | `$dangerous_goods`   | **mixed**                | Hazardous materials information for items.                                                                                                                                                                                                                                                                                         |
 | `$dds_reference`     | **mixed**                | The Due Diligence Statement (DDS) reference number assigned under the EU Deforestation Regulation (EUDR). Each DDS submitted to the EU information system is assigned a verification number.                                                                                                                                       |
 | `$taric_code`        | **mixed**                | The TARIC (Integrated Tariff of the European Communities) code used to classify traded goods for customs purposes within the EU.                                                                                                                                                                                                   |
+| `$cpsc`              | **mixed**                | CPSC (Consumer Product Safety Commission) certification details required for certain shipments to the United States. Omit this field entirely if not applicable.                                                                                                                                                                   |
 
 ***
 
